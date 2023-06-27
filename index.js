@@ -34,6 +34,7 @@ app.use(function(err, req, res, next) {
 })
 
 // Create HTTP Server
+// Also, return the information about EnShii-Daemon
 app.listen(config.serverConfig.service.port, config.serverConfig.service.host, () => {
     console.log('▓▓▓▓▓▓▓▓▓▓▓            ▓▓▓▓▓▓▓▓▓▓▓  ▓▓        〓  〓')
     console.log('▓▓                     ▓▓           ▓▓        ▓▓  ▓▓')
