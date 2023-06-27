@@ -13,8 +13,8 @@ app.get('/', (req, res) => {
 app.get('/server/information', (req, res) => {
     execute('./modules/server/information', req, res)
 })
-app.get('/server/yggdrasil_server', (req, res) => {
-    execute('./modules/server/yggdrasil_server', req, res)
+app.get('/server/oauth_server', (req, res) => {
+    execute('./modules/server/oauth_server', req, res)
 })
 
 // Auth modules

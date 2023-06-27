@@ -1,7 +1,7 @@
 const config = require('../config/server.json')
-const yggdrasil = require('../config/yggdrasil.json')
+const blessing = require('../config/blessing.json')
 
 module.exports = {
     serverConfig: config,
-    fastloginConfig: yggdrasil
+    fastloginConfig: blessing
 };
