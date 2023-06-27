@@ -16,4 +16,4 @@
 
 ## Open Source LICENSE
 
-GPL-3.0
+[GPL-3.0](LICENSE)
