@@ -1,0 +1,11 @@
+{
+    "name": "EnShii-Daemon",
+    "panel": {
+        "name": "QwinGin-Panel",
+        "uri": "http://127.0.0.1:15455"
+    },
+    "service": {
+        "host": "127.0.0.1",
+        "port": 15450
+    }
+}

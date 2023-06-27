@@ -1,0 +1,23 @@
+{
+  "name": "enshii-daemon",
+  "version": "1.0.0",
+  "description": "╭映水╯守护进程",
+  "main": "index.js",
+  "scripts": {
+    "enshii": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SPCraftMC/EnShii-Daemon.git"
+  },
+  "author": "SPCraftMC",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/SPCraftMC/EnShii-Daemon/issues"
+  },
+  "homepage": "https://github.com/SPCraftMC/EnShii-Daemon#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  }
+}
