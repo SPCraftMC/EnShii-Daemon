@@ -1,8 +1,8 @@
 const express = require('express')
-const mysql = require('mysql')
+const logger = require('./util/logger')
+const config = require('./util/config')
 
 const app = express()
-const config = require('./config/server.json')
 
 // Default response
 app.get('/', (req, res) => {
@@ -30,12 +30,11 @@ app.use(function(err, req, res, next) {
     console.error(err.stack);
     res.setHeader("content-type", "application/json")
     res.status(500)
-    res.send('{"status": false, "message": "International Server Error."}')
+    res.send('{"status": false, "message": "International Server Error.", data: {}}')
 })
 
 // Create HTTP Server
-app.listen(config.service.port, config.service.host, () => {
-    const date = new Date();
+app.listen(config.serverConfig.service.port, config.serverConfig.service.host, () => {
     console.log('▓▓▓▓▓▓▓▓▓▓▓            ▓▓▓▓▓▓▓▓▓▓▓  ▓▓        〓  〓')
     console.log('▓▓                     ▓▓           ▓▓        ▓▓  ▓▓')
     console.log('▓▓▓▓▓▓▓▓▓▓▓  ▓▓✚▓▓▓✚  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓✚  ▓▓  ▓▓')
@@ -43,9 +42,11 @@ app.listen(config.service.port, config.service.host, () => {
     console.log('▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓  ▓▓')
     console.log('EnShii-Daemon | Powered by SPCraftMC | Made with ❤.')
     console.log('')
-    console.log('Server running at http://' + config.service.host + ':' + config.service.port + '.')
-    console.log("Date: " + date.getFullYear() + "." + date.getMonth() + "." + date.getDate())
-    console.log('')
+    logger.info('Server running at http://' + config.serverConfig.service.host + ':' + config.serverConfig.service.port + '.')
+    logger.info(
+        "Start time: "
+        + new Intl.DateTimeFormat("zh", { dateStyle: "short" }).format()
+        + " " + new Intl.DateTimeFormat("zh", { timeStyle: "long" }).format())
 });
 
 /**
@@ -55,8 +56,9 @@ app.listen(config.service.port, config.service.host, () => {
 * @param res
 */
 function execute(module, req, res) {
-    console.log("Try import module: " + module.substring(2, module.length))
+    logger.info(">>> " + req.method + " | IP: " + req.ip)
+    logger.info("Try import module: " + module.substring(2, module.length))
     const mod = require(module)
     mod(req, res)
-    console.log("Run module: " + module.substring(2, module.length))
+    logger.info("Run module: " + module.substring(2, module.length))
 }

@@ -2,10 +2,20 @@
     "name": "EnShii-Daemon",
     "panel": {
         "name": "QwinGin-Panel",
+        "icon_uri": "https://spcraft.ml/favicon.ico",
         "uri": "http://127.0.0.1:15455"
     },
     "service": {
         "host": "127.0.0.1",
         "port": 15450
+    },
+    "mysqldb": {
+        "host": "localhost",
+        "port": "3306",
+        "database": "enshii",
+        "charset": "UTF8_GENERAL_CI",
+        "user": "enshii",
+        "password": "enshii",
+        "timezone": "Asia/Shanghai"
     }
 }

@@ -1,3 +1,0 @@
-moudules.export = (req, res) => {
-
-}
