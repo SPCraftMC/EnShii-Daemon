@@ -1,6 +1,7 @@
 const express = require('express')
 const logger = require('./util/logger')
 const config = require('./util/config')
+const db = require('./database/db')
 
 const app = express()
 
@@ -43,6 +44,9 @@ app.listen(config.serverConfig.service.port, config.serverConfig.service.host, (
     console.log('▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓  ▓▓')
     console.log('EnShii-Daemon | Powered by SPCraftMC | Made with ❤.')
     console.log('')
+    logger.info('Initializing database...')
+    db.init()
+    logger.info('Initializied.')
     logger.info('Server running at http://' + config.serverConfig.service.host + ':' + config.serverConfig.service.port + '.')
     logger.info(
         "Start time: "
