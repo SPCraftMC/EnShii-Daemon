@@ -1,3 +1,4 @@
+const sconfig = require('../../util/config').serverConfig;
 const yconfig = require('../../util/config').fastloginConfig;
 
 module.exports = (req, res) => {
@@ -18,6 +19,7 @@ module.exports = (req, res) => {
         }
     }
     res.setHeader("content-type", "application/json")
+    res.setHeader("Access-Control-Allow-Origin", sconfig.panel.uri)
     res.status(200)
     res.send(resp)
 }

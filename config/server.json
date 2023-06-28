@@ -2,8 +2,12 @@
     "name": "EnShii-Daemon",
     "panel": {
         "name": "QwinGin-Panel",
+        "title": {
+            "site": "「青镜」玩家管理面板",
+            "menu": "「青镜」QwinGin-Panel"
+        },
         "icon_uri": "https://spcraft.ml/favicon.ico",
-        "uri": "http://127.0.0.1:15455"
+        "uri": "http://localhost:15455"
     },
     "service": {
         "host": "127.0.0.1",

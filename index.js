@@ -45,8 +45,8 @@ app.listen(config.serverConfig.service.port, config.serverConfig.service.host, (
     console.log('EnShii-Daemon | Powered by SPCraftMC | Made with ❤.')
     console.log('')
     logger.info('Initializing database...')
-    db.init()
-    logger.info('Initializied.')
+    //db.init()
+    logger.info('Initialized.')
     logger.info('Server running at http://' + config.serverConfig.service.host + ':' + config.serverConfig.service.port + '.')
     logger.info(
         "Start time: "
