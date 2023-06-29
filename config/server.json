@@ -21,10 +21,10 @@
         "port": 15450
     },
     "captcha": {
-        "enable": true,
+        "enable": false,
         "choose": "turnsile",
         "turnsile": {
-            "site_key": "0x4AAAAAAAGsfneZBwEN-LSw",
+            "site_key": "",
             "server_key": ""
         }
     }
