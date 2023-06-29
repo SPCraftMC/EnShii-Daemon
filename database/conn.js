@@ -1,25 +1,32 @@
-const mysql = require('mysql')
-const logger = require('../util/logger')
-const config = require('../util/config')
+const mysql = require('mysql');
+const logger = require('../util/logger');
+const config = require('../util/config');
 
-function getConnection() {
-    logger.info("Create a new database connection.")
-    return mysql.createPool(config.serverConfig.mysqldb)
-}
+const pool = mysql.createPool(config.serverConfig.mysqldb);
 
-function executeQuery(s) {
-    const conn = getConnection()
-    logger.info('Execute query.')
-    conn.query(s, (err, result) => {
-        if(err) {
-            logger.error("Error while query database: " + err.message)
-            return [false, null, err.message]
+function executeQuery(sql, values) {
+  return new Promise((resolve, reject) => {
+    pool.getConnection((err, connection) => {
+      if (err) {
+        logger.error("Error while getting database connection: " + err.message);
+        reject(err);
+        return;
+      }
+
+      connection.query(sql, values, (err, result) => {
+        connection.release();
+
+        if (err) {
+          logger.error("Error while executing the database query: " + err.message);
+          reject(err);
+        } else {
+          resolve(result);
         }
-        return [true, result, null]
-    })
-    return [false, null, "Unkown error."]
+      });
+    });
+  });
 }
 
 module.exports = {
     executeQuery: executeQuery
-}
+};

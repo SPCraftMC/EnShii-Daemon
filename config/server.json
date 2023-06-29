@@ -18,7 +18,6 @@
         "port": "3306",
         "database": "enshii",
         "user": "enshii",
-        "password": "enshii",
-        "timezone": "Asia/Shanghai"
+        "password": "enshii"
     }
 }

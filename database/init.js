@@ -1,19 +1,32 @@
-const util = require('./conn')
-const logger = require('../util/logger')
+const util = require('./conn');
+const logger = require('../util/logger');
 
 module.exports = () => {
-    // 用户数据
-    let sql = "CREATE TABLE IF NOT EXISTS user_data("
-            + "name             STRING   NOT NULL, "
-            + "id               INT      UNIQUE, "
-            + "email            STRING   NOT NULL, "
-            + "linked_oauth     INT      DEFAULT   1 "
-            + ")"
-    const callback = util.executeQuery(sql)
-    if (!callback[0]) {
-        logger.error("Can't init database.")
-        logger.error(callback[2])
-        logger.error("EnShii-Daemon will exit now.")
-        process.exit()
-    } 
-}
+    // User data
+    const sql =
+    "CREATE TABLE IF NOT EXISTS user_data(" +
+    "name             VARCHAR(255)   NOT NULL, " +
+    "id               INT      UNIQUE, " +
+    "email            VARCHAR(255)   NOT NULL, " +
+    "linked_oauth     INT      DEFAULT   1 " +
+    ")";
+
+    return new Promise((resolve, reject) => {
+        util.executeQuery(sql)
+      .then(result => {
+          if (!result) {
+              logger.error("Failed to initialize the database.");
+              logger.error("EnShii-Daemon will exit now.");
+              process.exit();
+          } else {
+              logger.info("Database initialization successful.");
+              resolve(); // 表示初始化完成
+          }
+      })
+      .catch(error => {
+          logger.error("Error while initializing the database: " + error.message);
+          logger.error("EnShii-Daemon will exit now.");
+          process.exit();
+      });
+    });
+};
