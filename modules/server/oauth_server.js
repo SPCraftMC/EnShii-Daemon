@@ -18,8 +18,6 @@ module.exports = (req, res) => {
             fastlogin: yconfig.enable_fast_login
         }
     }
-    res.setHeader("content-type", "application/json")
-    res.setHeader("Access-Control-Allow-Origin", sconfig.panel.uri)
     res.status(200)
     res.send(resp)
 }

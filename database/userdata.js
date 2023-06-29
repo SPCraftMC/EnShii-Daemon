@@ -12,3 +12,7 @@ async function addUserData(userData) {
         logger.error('Failed to add user data: ' + error.message);
     }
 }
+
+function getUserData(userName) {
+    
+}

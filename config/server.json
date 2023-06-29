@@ -1,9 +1,16 @@
 {
     "name": "EnShii-Daemon",
+    "mysqldb": {
+        "host": "127.0.0.1",
+        "port": "3306",
+        "database": "enshii",
+        "user": "enshii",
+        "password": "enshii"
+    },
     "panel": {
         "name": "QwinGin-Panel",
         "title": {
-            "site": "「青镜」玩家管理面板",
+            "site": "「青镜」玩家管理面板 (QwinGin Panel)",
             "menu": "「青镜」QwinGin-Panel"
         },
         "icon_uri": "https://spcraft.ml/favicon.ico",
@@ -13,11 +20,12 @@
         "host": "127.0.0.1",
         "port": 15450
     },
-    "mysqldb": {
-        "host": "127.0.0.1",
-        "port": "3306",
-        "database": "enshii",
-        "user": "enshii",
-        "password": "enshii"
+    "captcha": {
+        "enable": true,
+        "choose": "turnsile",
+        "turnsile": {
+            "site_key": "0x4AAAAAAAGsfneZBwEN-LSw",
+            "server_key": ""
+        }
     }
 }

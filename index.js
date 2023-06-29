@@ -2,12 +2,13 @@ const express = require('express');
 const logger = require('./util/logger');
 const config = require('./util/config');
 const db = require('./database/db');
+const header = require('./modules/header');
 
 const app = express();
 
 // Default response
 app.get('/', (req, res) => {
-  res.send("Status => OK | EnShii-Daemon Loaded.");
+  res.send('{"message": "Status => OK | EnShii-Daemon Loaded."}');
 });
 
 // Server modules
@@ -16,6 +17,9 @@ app.get('/server/information', (req, res) => {
 });
 app.get('/server/oauth_server', (req, res) => {
   execute('./modules/server/oauth_server', req, res);
+});
+app.get('/server/captcha', (req, res) => {
+  execute('./modules/server/captcha', req, res);
 });
 
 // Auth modules
@@ -29,7 +33,6 @@ app.post('/auth/fastlogin', (req, res) => {
 // Error
 app.use(function (err, req, res, next) {
   console.error(err.stack);
-  res.setHeader("content-type", "application/json");
   res.status(500);
   res.send('{"status": false, "message": "International Server Error.", data: {}}');
 });
@@ -59,14 +62,15 @@ app.listen(config.serverConfig.service.port, config.serverConfig.service.host, (
 });
 
 /**
- * 执行对应模块
- * @param module 模块
- * @param req
- * @param res
- */
+* 执行对应模块
+* @param module 模块
+* @param req
+* @param res
+*/
 const execute = (module, req, res) => {
-  logger.info(`>>> ${req.method} | IP: ${req.ip}`);
+  logger.info(`>>> ${req.method} | ${req.path} | IP: ${req.ip}`);
   logger.info(`Try import module: ${module.substring(2)}`);
+  header(res)
   const mod = require(module);
   mod(req, res);
   logger.info(`Run module: ${module.substring(2)}`);
