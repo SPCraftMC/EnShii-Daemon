@@ -5,7 +5,7 @@ const logger = require("../../util/logger")
 module.exports = (req, res) => {
     const resp = {
         status: false,
-        message: null,
+        message: "International server error.",
         data: {
             token: null
         }
