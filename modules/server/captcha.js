@@ -6,8 +6,8 @@ module.exports = (req, res) => {
         status: true,
         message: "",
         data: {
-            "enable": config.captcha.enable,
-            "site_key": ""
+            enable: config.captcha.enable,
+            site_key: ""
         }
     }
     if (config.captcha.enable) {
