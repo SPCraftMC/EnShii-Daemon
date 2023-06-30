@@ -7,6 +7,7 @@ module.exports = () => {
         "CREATE TABLE IF NOT EXISTS user_data(" +
         "name             VARCHAR(255)   NOT NULL, " +
         "id               INT      UNIQUE, " +
+        "password         VARCHAR(255)   NOT NULL, " +
         "email            VARCHAR(255)   NOT NULL, " +
         "linked_oauth     INT      DEFAULT   1 " +
         ")";

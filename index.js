@@ -3,8 +3,17 @@ const logger = require('./util/logger');
 const config = require('./util/config');
 const db = require('./database/db');
 const header = require('./modules/header');
+const bodyParser = require('body-parser')
 
 const app = express();
+
+app.use(bodyParser());
+
+app.use((req, _res, next) => {
+  logger.info(`>>> ${req.method} | ${req.path} | IP: ${req.ip}`);
+  header(_res)
+  next()
+})
 
 // Default response
 app.get('/', (req, res) => {
@@ -68,9 +77,7 @@ app.listen(config.serverConfig.service.port, config.serverConfig.service.host, (
 * @param res
 */
 const execute = (module, req, res) => {
-  logger.info(`>>> ${req.method} | ${req.path} | IP: ${req.ip}`);
   logger.info(`Try import module: ${module.substring(2)}`);
-  header(res)
   const mod = require(module);
   mod(req, res);
   logger.info(`Run module: ${module.substring(2)}`);
