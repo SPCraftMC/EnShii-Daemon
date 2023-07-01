@@ -40,7 +40,7 @@ app.post('/auth/fastlogin', (req, res) => {
 });
 
 // Error
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500);
   res.send('{"status": false, "message": "International Server Error.", data: {}}');

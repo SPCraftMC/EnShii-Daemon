@@ -11,26 +11,33 @@ module.exports = (req, res) => {
         }
     }
     const params = req.body
-    const basedPassword = sha256(params.password)
 
-    db.userdata.getId(params.name).then((id) => {
-        if (id != null) {
-            db.userdata.getUserDataAndCompareLoginData(params.name, basedPassword)
-                .then((status) => {
-                    if (status) {
-                        resp.status = true
-                        resp.message = ""
-                        resp.data.token = db.token.createToken()
-                        res.status(200)
-                    }
-                }).catch((error) => {
-                resp.message = `Error while query database: ${error.message}.`
-                res.status(500)
-            })
-        } else {
-            resp.message = "User not found."
-            res.status(403)
-        }
-    })
-    res.send(resp)
+    db.userdata.getId(params.name)
+        .then((id) => {
+            if (id != null) {
+                return db.userdata.getUserDataAndCompareLoginData(id, params.password)
+                    .then((status) => {
+                        if (status) {
+                            resp.status = true
+                            resp.message = ""
+                            resp.data.token = db.token.createToken()
+                            res.status(200).send(resp)
+                        } else {
+                            resp.message = "Invalid password."
+                            res.status(403).send(resp)
+                        }
+                    })
+                    .catch((error) => {
+                        resp.message = `Error while querying the database: ${error.message}`
+                        res.status(500).send(resp)
+                    })
+            } else {
+                resp.message = "User not found."
+                res.status(403).send(resp)
+            }
+        })
+        .catch((error) => {
+            resp.message = `Error while querying the database: ${error.message}`
+            res.status(500).send(resp)
+        })
 }

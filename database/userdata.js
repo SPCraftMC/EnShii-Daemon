@@ -1,5 +1,6 @@
 const util = require('./conn');
 const logger = require('../util/logger');
+const sha256 = require('js-sha256');
 
 async function addUserData(userData) {
     const sql = `INSERT INTO user_data (name, id, email, linked_oauth) VALUES (?, ?, ?, ?)`;
@@ -15,13 +16,18 @@ async function addUserData(userData) {
     }
 }
 
-async function getUserDataAndCompareLoginData(name, password) {
-        const sql = `SELECT * FROM user_data WHERE name = ? AND password = ?`;
-        const values = [name, password];
+async function getUserDataAndCompareLoginData(id, password) {
+        const sql = `SELECT * FROM user_data WHERE id = ?`;
+        const values = [id];
 
         try {
             const result = await util.executeQuery(sql, values);
-            return result.length > 0; // 如果查询结果不为空，则返回 true，否则返回 false
+            if (result.length > 0) {
+                //logger.info(result[0].password)
+                //logger.info(`${sha256(result[0].password)} / ${password}`)
+                //logger.info(sha256(result[0].password) === password)
+                return sha256(result[0].password) === password
+            } else return false; // 如果查询结果不为空，则返回 true，否则返回 false
         } catch (error) {
             throw new Error("Error while comparing credentials: " + error.message);
         }
@@ -39,7 +45,7 @@ async function getId(name) {
             return null; // 如果没有找到匹配的用户，则返回 null
         }
     } catch (error) {
-        throw new Error("Error while getting user ID by name: " + error.message);
+        return null;
     }
 }
 
