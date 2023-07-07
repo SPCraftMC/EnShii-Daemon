@@ -1,13 +1,20 @@
-const express = require('express');
-const logger = require('./util/logger');
-const config = require('./util/config');
-const db = require('./database/db');
-const header = require('./modules/header');
-const bodyParser = require('body-parser')
+const express = require('express')
+const logger = require('./util/logger')
+//const config = require('./util/config')
+const dotenv = require("dotenv")
+const db = require('./database/db')
+const header = require('./modules/header')
+//const bodyParser = require('body-parser')
 
+dotenv.config()
+
+const config = process.env
 const app = express();
 
-app.use(bodyParser());
+//app.use(bodyParser());
+//下文替换被弃用的bodyparser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, _res, next) => {
   logger.info(`>>> ${req.method} | ${req.path} | IP: ${req.ip}`);
@@ -51,21 +58,21 @@ const startServer = async () => {
   try {
     await db.init();
     logger.info('Initialized.');
-    logger.info(`Server running at http://${config.serverConfig.service.host}:${config.serverConfig.service.port}.`);
+    console.log(`▓▓▓▓▓▓▓▓▓▓▓            ▓▓▓▓▓▓▓▓▓▓▓  ▓▓        〓  〓`);
+    console.log(`▓▓                     ▓▓           ▓▓        ▓▓  ▓▓`);
+    console.log(`▓▓▓▓▓▓▓▓▓▓▓  ▓▓✚▓▓▓✚  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓✚  ▓▓  ▓▓`);
+    console.log(`▓▓           ▓▓    ▓▓           ▓▓  ▓▓    ▓▓  ▓▓  ▓▓`);
+    console.log(`▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓  ▓▓`);
+    console.log(`EnShii-Daemon | Powered by SPCraftMC and maincore_tech. | Made with ❤.`);
+    console.log('');
+    logger.info(`Server running at http://${config.HOST}:${config.DAEMON_PORT}.`);
     logger.info(`Start time: ${new Intl.DateTimeFormat("zh", { dateStyle: "short", timeStyle: "long" }).format()}`);
   } catch (error) {
     console.error("Initialization failed: " + error.message);
   }
 };
 
-app.listen(config.serverConfig.service.port, config.serverConfig.service.host, () => {
-  console.log(`▓▓▓▓▓▓▓▓▓▓▓            ▓▓▓▓▓▓▓▓▓▓▓  ▓▓        〓  〓`);
-  console.log(`▓▓                     ▓▓           ▓▓        ▓▓  ▓▓`);
-  console.log(`▓▓▓▓▓▓▓▓▓▓▓  ▓▓✚▓▓▓✚  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓✚  ▓▓  ▓▓`);
-  console.log(`▓▓           ▓▓    ▓▓           ▓▓  ▓▓    ▓▓  ▓▓  ▓▓`);
-  console.log(`▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓  ▓▓`);
-  console.log(`EnShii-Daemon | Powered by SPCraftMC | Made with ❤.`);
-  console.log('');
+app.listen(config.DAEMON_PORT, config.HOST, () => {
   logger.info('Initializing database...');
   startServer();
 });
@@ -77,7 +84,7 @@ app.listen(config.serverConfig.service.port, config.serverConfig.service.host, (
 * @param res
 */
 const execute = (module, req, res) => {
-  logger.info(`Try import module: ${module.substring(2)}`);
+  logger.info(`Try const module: ${module.substring(2)}`);
   const mod = require(module);
   mod(req, res);
   logger.info(`Run module: ${module.substring(2)}`);

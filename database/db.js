@@ -1,7 +1,8 @@
 const init = require('./init')
-const userdata = require("./userdata")
+const user = require("./user")
 
 module.exports = {
     init: init,
-    userdata: userdata
+    user: user
 }
+

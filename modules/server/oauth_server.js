@@ -1,13 +1,21 @@
-const sconfig = require('../../util/config').serverConfig;
-const yconfig = require('../../util/config').fastloginConfig;
+//const { serverConfig, fastloginConfig } = require('../../util/config')
+const dotenv = require("dotenv")
+const oauth = require('../../oauth.json')
+
+dotenv.config()
+
+const config = process.env
+
+/*const yconfig = fastloginConfig
+const sconfig = serverConfig*/
 
 module.exports = (req, res) => {
     let resp = {}
-    if (yconfig.enable_fast_login) resp = {
+    if (config.OAUTH) resp = {
         status: true,
         message: "",
         data: {
-            fastlogin: yconfig.enable_fast_login,
+            fastlogin: config.OAUTH,
             services: getServices()
         }
     }
@@ -15,7 +23,7 @@ module.exports = (req, res) => {
         status: true,
         message: "",
         data: {
-            fastlogin: yconfig.enable_fast_login
+            fastlogin: config.OAUTH
         }
     }
     res.status(200)
@@ -24,7 +32,7 @@ module.exports = (req, res) => {
 
 function getServices() {
     let services = []
-    yconfig.services.forEach(it => {
+    oauth.services.forEach(it => {
         let ts = {
             name: it.name,
             id: it.id,

@@ -1,5 +1,3 @@
-const util = require('./conn');
-const logger = require('../util/logger');
 const token = []
 async function createToken(id) {
     let guid = ''

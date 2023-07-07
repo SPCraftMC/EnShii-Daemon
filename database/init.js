@@ -1,33 +1,31 @@
-const util = require('./conn');
-const logger = require('../util/logger');
+const logger = require ('../util/logger')
+const { exec } = require('child_process');
+const { PrismaClient } = require('./client')
+const prisma = new PrismaClient()
 
+//执行shell命令，根据'../prisma/schema.prisma'初始化数据库
 module.exports = () => {
-    // User data
-    const sql =
-        "CREATE TABLE IF NOT EXISTS user_data(" +
-        "name             VARCHAR(255)   NOT NULL, " +
-        "id               INT      UNIQUE, " +
-        "password         VARCHAR(255)   NOT NULL, " +
-        "email            VARCHAR(255)   NOT NULL, " +
-        "linked_oauth     INT      DEFAULT   1 " +
-        ")";
-
-    return new Promise((resolve, reject) => {
-        util.executeQuery(sql)
-            .then(result => {
-                if (!result) {
-                    logger.error("USER_DATA: Failed to initialize the database.");
-                    logger.error("EnShii-Daemon will exit now.");
-                    process.exit();
-                } else {
-                    logger.info("USER_DATA: Database initialization successful.");
-                    resolve(); // 表示初始化完成
-                }
-            })
-            .catch(error => {
-                logger.error("USER_DATA: Error while initializing the database: " + error.message);
-                logger.error("EnShii-Daemon will exit now.");
-                process.exit();
-            });
+  return new Promise((resolve, reject) => {
+    exec('npx prisma db push', (error, stdout, stderr) => {
+      if (error) {
+        logger.error(`error: ${error}`);
+        logger.error("[init]Error while initializing the databasemodel!");
+        logger.error("EnShii-Daemon will exit now.");
+        process.exit();
+      }
+      logger.info(`stdout: ${stdout}`);
+      logger.info("Database model initialization successful.");
+      exec('npx prisma db seed', (error, stdout, stderr) => {
+        if (error) {
+          logger.error(`error: ${error}`);
+          logger.error("[init]Error while prepare root user!");
+          logger.error("EnShii-Daemon will exit now.");
+          process.exit();
+        }
+        logger.info(`stdout: ${stdout}`);
+        logger.info("The root user fit the requirements. initialization successful");
+        resolve()
+      });
     });
-};
+  });
+}

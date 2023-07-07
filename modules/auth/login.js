@@ -1,6 +1,4 @@
-const db = require("../../database/db")
-const sha256 = require("js-sha256")
-const logger = require("../../util/logger")
+const db = require('../../database/db')
 
 module.exports = (req, res) => {
     const resp = {
@@ -12,10 +10,10 @@ module.exports = (req, res) => {
     }
     const params = req.body
 
-    db.userdata.getId(params.name)
+    db.user.id(params.name)
         .then((id) => {
-            if (id != null) {
-                return db.userdata.getUserDataAndCompareLoginData(id, params.password)
+            if (id !== null) {
+                return db.user.login(id, params.password)
                     .then((status) => {
                         if (status) {
                             resp.status = true
