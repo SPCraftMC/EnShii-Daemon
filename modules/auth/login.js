@@ -20,7 +20,7 @@ module.exports = (req, res) => {
                         if (status) {
                             resp.status = true
                             resp.message = ""
-                            resp.data.token = db.token.createToken()
+                            resp.data.token = db.token.createToken(id)
                             res.status(200).send(resp)
                         } else {
                             resp.message = "Invalid password."
