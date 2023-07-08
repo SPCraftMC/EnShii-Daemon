@@ -9,14 +9,26 @@ function exist(result) {
 
 async function add(userData) {
   try {
-    const result = await prisma.user.create({
-      data: {
-        name: userData.name,
-        password: userData.password,
-        email: userData.email, // 修正拼写错误
+    const respre = await prisma.user.findUnique({
+      where: {
+        name: userData.name
+      },
+      select: {
+        id: true,
       },
     })
-    return true
+    if (respre.id !== null) {
+      await prisma.user.create({
+        data: {
+          name: userData.name,
+          password: userData.password,
+          email: userData.email, // 修正拼写错误
+        },
+      })
+      return true
+    } else {
+      return false
+    }
   } catch (error) {
     logger.error('Failed to add user data: ' + error.message);
     return false

@@ -7,4 +7,10 @@ module.exports = {
     user: user,
     token: token
 }
-
+/*
+权限
+-1 - banned
+1 - user
+2 - admin
+3 - root
+*/
