@@ -9,7 +9,7 @@ datasource db {
 }
 
 model User {
-  id           Int    @id @unique(map: "id")
+  id           Int    @id @default(autoincrement()) @unique(map: "id")
   name         String @db.VarChar(255) @unique(map: "name")
   password     String @db.VarChar(255)
   email        String @db.VarChar(255)
