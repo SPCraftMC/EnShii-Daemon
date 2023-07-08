@@ -23,11 +23,11 @@ async function add(userData) {
   }
 }
 
-async function login(name, password) {
+async function login(id, password) {
   try {
     const result = await prisma.user.findUnique({
       where: {
-        name: name,
+        id: id,
       },
       select: {
         name: true,
@@ -52,14 +52,13 @@ async function id(name) {
         id: true,
       },
     })
-    logger.warn(result.id) // 修改为 logger.warn(result.id)
+    //logger.warn(result.id) // 修改为 logger.warn(result.id)
     if (exist(result)) {
       return result.id
     } else {
       return null
     }
   } catch (error) {
-    logger.error(error.message)
     return null
   }
 }
