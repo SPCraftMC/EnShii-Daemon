@@ -42,6 +42,9 @@ app.get('/server/captcha', (req, res) => {
 app.post('/auth/login', (req, res) => {
   execute('./modules/auth/login', req, res);
 });
+app.post('/auth/register', (req, res) => {
+  execute('./modules/auth/register', req, res);
+})
 app.post('/auth/fastlogin', (req, res) => {
   execute('./modules/auth/fastlogin', req, res);
 });

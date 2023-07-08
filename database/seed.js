@@ -1,6 +1,7 @@
 const { PrismaClient } = require('./client')
 const dotenv = require("dotenv")
 const prisma = new PrismaClient()
+const logger = require("../util/logger")
 
 dotenv.config()
 
@@ -16,14 +17,14 @@ async function main() {
       email: process.env.ROOT_EMAIL
     },
   })
-  console.log({ initUser })
+  logger.info({ initUser })
 }
 main()
   .then(async () => {
     await prisma.$disconnect()
   })
   .catch(async (e) => {
-    console.error(e)
+    logger.error(e)
     await prisma.$disconnect()
     process.exit(1)
   })
