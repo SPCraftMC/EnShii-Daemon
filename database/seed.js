@@ -5,7 +5,7 @@ const logger = require("../util/logger")
 
 dotenv.config()
 
-//检测rule为3的根用户是否存在，并创建此用户
+//检测或创建root用户
 async function main() {
   await prisma.user.upsert({
     where: { name: process.env.ROOT_NAME },
@@ -27,3 +27,4 @@ main()
     await prisma.$disconnect()
     process.exit(1)
   })
+
