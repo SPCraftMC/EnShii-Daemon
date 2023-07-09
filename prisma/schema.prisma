@@ -10,6 +10,7 @@ datasource db {
 
 model User {
   id           Int    @id @default(autoincrement()) @unique(map: "id")
+  rule         Int    @default(1)
   name         String @db.VarChar(255) @unique(map: "name")
   password     String @db.VarChar(255)
   email        String @db.VarChar(255)
@@ -22,3 +23,7 @@ model Oauth {
   token        String @db.VarChar(255)
 }
 
+//1 - user
+//2 - admin
+//3 - root
+//-1 - banned
