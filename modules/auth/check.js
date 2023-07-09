@@ -3,7 +3,6 @@ const {verify} = require('../token')
 
 module.exports = (req, res) => {
     const params = req.body
-    const id = params.id
     const token = params.token
 
     let resp = {

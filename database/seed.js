@@ -8,7 +8,7 @@ dotenv.config()
 //检测id为0的根用户是否存在，并创建此用户
 async function main() {
   await prisma.user.upsert({
-    where: { id: 0 },
+    where: { name: process.env.ROOT_NAME },
     update: {},
     create: {
       name: process.env.ROOT_NAME,

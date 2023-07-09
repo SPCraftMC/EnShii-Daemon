@@ -48,6 +48,14 @@ app.post('/auth/register', (req, res) => {
 app.post('/auth/fastlogin', (req, res) => {
   execute('./modules/auth/fastlogin', req, res);
 });
+app.post('/auth/check', (req, res) => {
+  execute('./modules/auth/check', req, res)
+})
+
+//User modules
+app.get('/user/information', (req, res) => {
+  execute('./modules/user/information', req, res)
+})
 
 // Error
 app.use((err, req, res, next) => {
