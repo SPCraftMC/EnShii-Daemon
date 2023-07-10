@@ -56,6 +56,9 @@ app.post('/auth/check', (req, res) => {
 app.get('/user/information', (req, res) => {
   execute('./modules/user/information', req, res)
 })
+app.get('/user/blacklist', (req, res) => {
+  execute('./modules/user/blacklist', req, res)
+})
 
 // Error
 app.use((err, req, res, next) => {

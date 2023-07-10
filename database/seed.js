@@ -5,7 +5,7 @@ const logger = require("../util/logger")
 
 dotenv.config()
 
-//检测或创建root用户
+//检测和创建root用户
 async function main() {
   await prisma.user.upsert({
     where: { name: process.env.ROOT_NAME },

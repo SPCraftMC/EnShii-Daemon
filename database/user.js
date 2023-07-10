@@ -14,7 +14,7 @@ async function add(userData) {
             data: {
                 name: userData.name,
                 password: userData.password,
-                email: userData.email, // 修正拼写错误
+                email: userData.email,
             },
         })
         return true
@@ -53,7 +53,6 @@ async function id(name) {
                 id: true,
             },
         })
-        //logger.warn(result.id) // 修改为 logger.warn(result.id)
         if (exist(result)) {
             return result.id
         } else {

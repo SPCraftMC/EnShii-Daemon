@@ -1,11 +1,13 @@
 const init = require('./init')
 const user = require("./user")
 const token = require("../modules/token")
+const blacklist = require("./blacklist")
 
 module.exports = {
     init: init,
     user: user,
-    token: token
+    token: token,
+    blacklist: blacklist
 }
 /*
 权限
