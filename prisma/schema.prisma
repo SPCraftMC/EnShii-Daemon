@@ -15,6 +15,7 @@ model User {
   password     String @db.VarChar(255)
   email        String @db.VarChar(255)
   linked_oauth Int    @default(-1)
+  ban_info     String @db.VarChar(255)
 }
 
 model Oauth {
