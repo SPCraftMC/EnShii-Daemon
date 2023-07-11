@@ -12,7 +12,7 @@ module.exports = (req, res) => {
 
   verify(params.token)
     .then((status) => {
-      if (true) {
+      if (status) {
         blacklist.users()
           .then((bannedUsers) => {
             resp.status = true;
