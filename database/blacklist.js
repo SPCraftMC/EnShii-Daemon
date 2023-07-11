@@ -4,18 +4,19 @@ const logger = require ('../util/logger')
 
 async function users() {
   try {
-    const bannedUsers = await prisma.user.findMany({
+    const blackList = await prisma.user.findMany({
       where: {
         rule: -1
       },
       select: {
-        name: true
+        name: true,
+        ban_info: true
       }
     });
 
-    return bannedUsers.map(user => user.name);
+    return blackList
   } catch (error) {
-    logger.error('Error retrieving banned users:', error);
+    logger.error('Error retrieving black list:', error);
     throw error;
   } finally {
     await prisma.$disconnect();

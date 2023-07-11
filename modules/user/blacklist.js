@@ -14,10 +14,11 @@ module.exports = (req, res) => {
     .then((status) => {
       if (status) {
         blacklist.users()
-          .then((bannedUsers) => {
+          .then((blackList) => {
             resp.status = true;
+            resp.message = ""
             resp.data = {
-              names: bannedUsers
+              users: blackList
             };
             res.status(200).send(resp);
           })
