@@ -12,13 +12,12 @@ module.exports = (req, res) => {
 
   verify(params.token)
     .then((status) => {
-      if (status) {
+      if (true) {
         blacklist.users()
           .then((bannedUsers) => {
             resp.status = true;
-            resp.message = "";
             resp.data = {
-              bannedUsers: bannedUsers
+              names: bannedUsers
             };
             res.status(200).send(resp);
           })

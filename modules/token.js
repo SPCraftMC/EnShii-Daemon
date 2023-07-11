@@ -17,7 +17,7 @@ async function createToken(id) {
 
 async function verify(token) {
   for (let it in token) {
-    logger.info(`${it.token}，${token}`)
+    logger.info(`${it.token}, ${token}`)
     if (Date.now() >= it.expried) {
       token.delete(it)
       return false
