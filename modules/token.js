@@ -1,54 +1,42 @@
-const token = new WeakMap();
-const keys = [];
+const logger = require("../util/logger")
 
+const token = []
 async function createToken(id) {
-  let guid = '';
-  for (let i = 1; i <= 32; i++) {
-    const n = Math.floor(Math.random() * 16.0).toString(16);
-    guid += n;
-  }
-  token.set(id, {
-    "id": id,
-    "token": guid,
-    "expried": Date.now() + 86400000
-  });
-  keys.push(id);
-  return guid;
-}
-
-async function verify(id, tokenValue) {
-  for (const key of keys) {
-    const value = token.get(key);
-    const i0 = (key === id);
-    const i1 = (value.token === tokenValue);
-    if (Date.now() >= value.expried) return false;
-    else if (i0 && i1) return true;
-  }
-  return false;
-}
-
-async function getId(tokenValue) {
-  for (const key of keys) {
-    const value = token.get(key);
-    const i0 = (key === id);
-    const i1 = (value.token === tokenValue);
-    if (i0 && i1) return key;
-    else return null;
-  }
-}
-
-setInterval(() => {
-  for (const key of keys) {
-    const value = token.get(key);
-    if (Date.now() >= value.expried) {
-      token.delete(key);
-      keys.splice(keys.indexOf(key), 1);
+    let guid = ''
+    for (let i = 1; i <= 32; i++) {
+        const n = Math.floor(Math.random() * 16.0).toString(16)
+        guid += n
     }
+    token.push({
+        "id": id,
+        "token": guid,
+        "expried": Date.now() + 86400000
+    })
+    return guid
+}
+
+async function verify(token) {
+  for (let it in token) {
+    logger.info(`${it.token}，${token}`)
+    if (Date.now() >= it.expried) {
+      token.delete(it)
+      return false
+    }
+    else if (token === it.token) return true
   }
-});
+  return false
+  /**
+    token.forEach((it) => {
+        const i0 = it === it.id
+        const i1 = token === it.token
+        if (Date.now() >= it.expried) return false
+        else if (i0 && i1) return true
+    })
+    return false
+*/
+}
 
 module.exports = {
     createToken: createToken,
-    verify: verify,
-    getId: getId
-};
+    verify: verify
+}
