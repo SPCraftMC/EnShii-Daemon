@@ -71,7 +71,6 @@ app.use((err, req, res, next) => {
 const startServer = async () => {
   try {
     await db.init();
-    logger.info('Initialized.');
     console.log(`▓▓▓▓▓▓▓▓▓▓▓            ▓▓▓▓▓▓▓▓▓▓▓  ▓▓        〓  〓`);
     console.log(`▓▓                     ▓▓           ▓▓        ▓▓  ▓▓`);
     console.log(`▓▓▓▓▓▓▓▓▓▓▓  ▓▓✚▓▓▓✚   ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓✚   ▓▓  ▓▓`);
