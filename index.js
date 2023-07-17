@@ -77,7 +77,7 @@ const startServer = async () => {
     console.log(`▓▓▓▓▓▓▓▓▓▓▓  ▓▓✚▓▓▓✚   ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓✚   ▓▓  ▓▓`);
     console.log(`▓▓           ▓▓    ▓▓           ▓▓  ▓▓    ▓▓  ▓▓  ▓▓`);
     console.log(`▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓  ▓▓`);
-    console.log(`EnShii-Daemon | Powered by SPCraftMC and maincore_tech. | Made with ❤.`);
+    console.log(`EnShii-Daemon | Powered by SPCraftMC and maincore_tech. | Made with \x1B[31m❤\x1B[0m.`);
     console.log('');
     logger.info(`Server running at http://${config.HOST}:${config.DAEMON_PORT}.`);
     logger.info(`Start time: ${new Intl.DateTimeFormat("zh", { dateStyle: "short", timeStyle: "long" }).format()}`);
