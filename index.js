@@ -80,8 +80,7 @@ const startServer = async () => {
     console.log(`\x1B[2m│\x1B[0m                     Made with \x1B[31m❤\x1B[0m.                     \x1B[2m│\x1B[0m`)
     console.log(`\x1B[2m╰──────────────────────────────────────────────────────╯\x1B[0m`)
     console.log(``);
-    logger.info(`Server running at http://${config.HOST}:${config.DAEMON_PORT}.`);
-    logger.info(`Start time: ${new Intl.DateTimeFormat("zh", { dateStyle: "short", timeStyle: "long" }).format()}`);
+    logger.info(`Server running at http://${config.HOST}:${config.DAEMON_PORT}. \x1B[32mReady for connections!\x1B[0m`);
   } catch (error) {
     console.error("Initialization failed: " + error.message);
   }
