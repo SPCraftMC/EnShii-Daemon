@@ -1,18 +1,14 @@
 const express = require('express')
 const logger = require('./util/logger')
-//const config = require('./util/config')
 const dotenv = require("dotenv")
 const db = require('./database/db')
 const header = require('./modules/header')
-//const bodyParser = require('body-parser')
 
 dotenv.config()
 
 const config = process.env
 const app = express();
 
-//app.use(bodyParser());
-//下文替换被弃用的bodyparser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -71,13 +67,19 @@ app.use((err, req, res, next) => {
 const startServer = async () => {
   try {
     await db.init();
-    console.log(`▓▓▓▓▓▓▓▓▓▓▓            ▓▓▓▓▓▓▓▓▓▓▓  ▓▓        〓  〓`);
-    console.log(`▓▓                     ▓▓           ▓▓        ▓▓  ▓▓`);
-    console.log(`▓▓▓▓▓▓▓▓▓▓▓  ▓▓✚▓▓▓✚   ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓✚   ▓▓  ▓▓`);
-    console.log(`▓▓           ▓▓    ▓▓           ▓▓  ▓▓    ▓▓  ▓▓  ▓▓`);
-    console.log(`▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓  ▓▓`);
-    console.log(`EnShii-Daemon | Powered by SPCraftMC and maincore_tech. | Made with \x1B[31m❤\x1B[0m.`);
-    console.log('');
+    logger.info(`Initialization successful.(${Math.round(performance.now())}ms)`);
+    console.log(``);
+    console.log(`\x1B[2m╭──────────────────────────────────────────────────────╮\x1B[0m`);
+    console.log(`\x1B[2m│\x1B[0m ▓▓▓▓▓▓▓▓▓▓▓            ▓▓▓▓▓▓▓▓▓▓▓  ▓▓        〓  〓 \x1B[2m│\x1B[0m`);
+    console.log(`\x1B[2m│\x1B[0m ▓▓                     ▓▓           ▓▓        ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
+    console.log(`\x1B[2m│\x1B[0m ▓▓▓▓▓▓▓▓▓▓▓  ▓▓✚▓▓▓✚   ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓✚   ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
+    console.log(`\x1B[2m│\x1B[0m ▓▓           ▓▓    ▓▓           ▓▓  ▓▓    ▓▓  ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
+    console.log(`\x1B[2m│\x1B[0m ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
+    console.log(`\x1B[2m│──────────────────────────────────────────────────────│\x1B[0m`);
+    console.log(`\x1B[2m│\x1B[0m EnShii-Daemon \x1B[2m|\x1B[0m Powered by SPCraftMC & maincore_tech.\x1B[2m│\x1B[0m`);
+    console.log(`\x1B[2m│\x1B[0m                     Made with \x1B[31m❤\x1B[0m.                     \x1B[2m│\x1B[0m`)
+    console.log(`\x1B[2m╰──────────────────────────────────────────────────────╯\x1B[0m`)
+    console.log(``);
     logger.info(`Server running at http://${config.HOST}:${config.DAEMON_PORT}.`);
     logger.info(`Start time: ${new Intl.DateTimeFormat("zh", { dateStyle: "short", timeStyle: "long" }).format()}`);
   } catch (error) {

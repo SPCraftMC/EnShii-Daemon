@@ -15,19 +15,19 @@ module.exports = (req, res) => {
       if (status) {
         blacklist.users()
           .then((blackList) => {
-            resp.status = true;
+            resp.status = true
             resp.message = ""
             resp.data = {
               users: blackList
-            };
-            res.status(200).send(resp);
+            }
+            res.status(200).send(resp)
           })
           .catch(() => {
-            res.status(500).send(resp);
+            res.status(500).send(resp)
           });
       } else {
-        resp.message = "Invalid token.";
-        res.status(403).send(resp);
+        resp.message = "Invalid token."
+        res.status(403).send(resp)
       }
-    });
-};
+    })
+}

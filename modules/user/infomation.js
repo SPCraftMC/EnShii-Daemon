@@ -1,6 +1,5 @@
-const db = require('../../database/db')
-const {verify} = require("../token");
-const {user} = require("../../database/db");
+const { verify } = require("../token");
+const { user } = require("../../database/db");
 
 module.exports = (req, res) => {
     const resp = {
@@ -31,7 +30,7 @@ module.exports = (req, res) => {
                 res.send(resp)
             })
         } else {
-            resp.message = "Token invaild."
+            resp.message = "Invalid token."
             res.status(403).send(resp)
         }
     })
