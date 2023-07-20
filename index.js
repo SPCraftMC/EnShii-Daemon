@@ -16,7 +16,7 @@ app.use((req, _res, next) => {
   logger.info(`>>> ${req.method} | ${req.path} | IP: ${req.ip}`);
   header(_res)
   next()
-})
+});
 
 // Default response
 app.get('/', (req, res) => {
@@ -40,21 +40,21 @@ app.post('/auth/login', (req, res) => {
 });
 app.post('/auth/register', (req, res) => {
   execute('./modules/auth/register', req, res);
-})
+});
 app.post('/auth/fastlogin', (req, res) => {
   execute('./modules/auth/fastlogin', req, res);
 });
 app.post('/auth/check', (req, res) => {
   execute('./modules/auth/check', req, res)
-})
+});
 
 //User modules
 app.get('/user/information', (req, res) => {
   execute('./modules/user/information', req, res)
-})
-app.get('/user/blacklist', (req, res) => {
+});
+app.post('/user/blacklist', (req, res) => {
   execute('./modules/user/blacklist', req, res)
-})
+});
 
 // Error
 app.use((err, req, res, next) => {

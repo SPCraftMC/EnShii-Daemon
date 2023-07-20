@@ -10,7 +10,8 @@ module.exports = (req, res) => {
 
   const params = req.body;
 
-  verify(params.token)
+  //待修改
+  verify(true)
     .then((status) => {
       if (status) {
         blacklist.users()
