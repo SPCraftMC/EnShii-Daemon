@@ -1,4 +1,3 @@
-//const { serverConfig, fastloginConfig } = require('../../util/config')
 const dotenv = require("dotenv")
 const oauth = require('../../oauth.json')
 
