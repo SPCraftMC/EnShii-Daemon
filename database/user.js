@@ -8,6 +8,7 @@ function exist(result) {
     return result !== null;
 }
 
+//添加用户
 async function add(userData) {
     try {
         await prisma.user.create({
@@ -24,6 +25,7 @@ async function add(userData) {
     }
 }
 
+//登陆判定
 async function login(id, password) {
     try {
         const result = await prisma.user.findUnique({
@@ -43,6 +45,7 @@ async function login(id, password) {
     }
 }
 
+//通过用户名查询id
 async function id(name) {
     try {
         const result = await prisma.user.findUnique({
@@ -63,6 +66,7 @@ async function id(name) {
     }
 }
 
+//根据token组中id查询用户数据
 async function all(token) {
     const query = await prisma.user.findUnique({
         where: {
