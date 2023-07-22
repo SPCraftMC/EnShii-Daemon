@@ -2,6 +2,7 @@ const { PrismaClient } = require('./client');
 const prisma = new PrismaClient();
 const logger = require ('../util/logger')
 
+//查询ban掉用户
 async function users() {
   try {
     const blackList = await prisma.user.findMany({
@@ -23,6 +24,7 @@ async function users() {
   }
 }
 
+//查询特定用户ban_info
 async function baninfo(name) {
   try {
     const user = await prisma.user.findUnique({
