@@ -25,7 +25,7 @@ async function add(userData) {
     }
 }
 
-//登陆判定
+//登陆
 async function login(id, password) {
     try {
         const result = await prisma.user.findUnique({
