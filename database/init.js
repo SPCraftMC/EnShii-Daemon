@@ -1,9 +1,7 @@
 const logger = require ('../util/logger')
 const { exec } = require('child_process');
-//const { PrismaClient } = require('./client')
-//const prisma = new PrismaClient()
 
-//执行shell命令，根据'../prisma/schema.prisma'初始化数据库
+/*执行shell命令，根据'../prisma/schema.prisma'初始化数据库结构并执行'./seed.js'配置root用户*/
 module.exports = () => {
   return new Promise((resolve, reject) => {
     exec('npx prisma db push', (error) => {
@@ -21,7 +19,7 @@ module.exports = () => {
           logger.error("EnShii-Daemon will exit now.");
           process.exit();
         }
-        logger.info("The root user fit the requirements.");
+        logger.info("Root user fit the requirements.");
         resolve()
       });
     });
