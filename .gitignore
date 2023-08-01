@@ -1,4 +1,10 @@
 node_modules/
-yarn.lock
 ._*
 database/client/
+
+# Lockfile
+yarn.lock
+pnpm-lock.yaml
+
+# Ingore .env
+.env

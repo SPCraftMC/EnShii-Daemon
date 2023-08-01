@@ -7,7 +7,7 @@ module.exports = () => {
     exec('npx prisma db push', (error) => {
       if (error) {
         logger.error(`${error}`);
-        logger.error("[init]Error while initializing the database model!");
+        logger.error("Error while initializing the database model!");
         logger.error("EnShii-Daemon will exit now.");
         process.exit();
       }
@@ -15,7 +15,7 @@ module.exports = () => {
       exec('npx prisma db seed', (error) => {
         if (error) {
           logger.error(`${error}`);
-          logger.error("[init]Error while preparing root user!");
+          logger.error("Error while preparing root user!");
           logger.error("EnShii-Daemon will exit now.");
           process.exit();
         }
