@@ -6,32 +6,32 @@ module.exports = (req, res) => {
         status: false,
         message: "International server error.",
         data: {}
-    }
+    };
 
     const params = req.body
 
-    verify(params.token).then((status) => {
-        if (status) {
-            user.all(params.token).then((resultData) => {
-                resp.status = true
-                resp.message = ""
-                resp.data = {
-                    name: resultData.name,
-                    id: resultData.id,
-                    email: resultData.email,
-                    linked_oauth: resultData.linkedOauth
-                }
-                res.status(200)
-            })
-            .catch(() => {
-                res.status(500)
-            })
-            .finally(() => {
-                res.send(resp)
-            })
-        } else {
-            resp.message = "Invalid token."
-            res.status(403).send(resp)
-        }
-    })
+    verify(params.token)
+        .then((status) => {
+            if (status) {
+                user.all(params.token)
+                    .then((result) => {
+                        resp.status = true
+                        resp.message = ""
+                        resp.data = {
+                            id: result.id,
+                            rule: result.rule,
+                            name: result.name,
+                            email: result.email,
+                            linked_oauth: result.linkedOauth
+                        }
+                        res.status(200).send(resp)
+                    })
+                    .catch(() => {
+                        res.status(500).send(resp)
+                    })
+            } else {
+                resp.message = "Invalid token."
+                res.status(403).send(resp)
+            }
+        })
 }

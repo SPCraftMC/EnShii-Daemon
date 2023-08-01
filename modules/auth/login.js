@@ -10,36 +10,36 @@ module.exports = (req, res) => {
     }
     const params = req.body
 
-/*    db.user.id(params.name)
-        .then((id) => {
-            if (id !== null) {
-                return db.user.login(id, params.password)
-                    .then((status) => {
-                        if (status) {
-                            resp.status = true
-                            resp.message = ""
-                            resp.data.token = db.token.createToken(id)
-                            console.log(resp.data.token)
-                            res.status(200).send(resp)
-                        } else {
-                            resp.message = "Invalid password."
-                            res.status(403).send(resp)
-                        }
-                    })
-                    .catch((error) => {
-                        resp.message = `Error while querying the database: ${error.message}`
-                        res.status(500).send(resp)
-                    })
-            } else {
-                resp.message = "User not found."
-                res.status(403).send(resp)
-            }
-        })
-        .catch((error) => {
-            resp.message = `Error while querying the database: ${error.message}`
-            res.status(500).send(resp)
-        })*/
-        db.user.id(params.name)
+    /*    db.user.id(params.name)
+            .then((id) => {
+                if (id !== null) {
+                    return db.user.login(id, params.password)
+                        .then((status) => {
+                            if (status) {
+                                resp.status = true
+                                resp.message = ""
+                                resp.data.token = db.token.createToken(id)
+                                console.log(resp.data.token)
+                                res.status(200).send(resp)
+                            } else {
+                                resp.message = "Invalid password."
+                                res.status(403).send(resp)
+                            }
+                        })
+                        .catch((error) => {
+                            resp.message = `Error while querying the database: ${error.message}`
+                            res.status(500).send(resp)
+                        })
+                } else {
+                    resp.message = "User not found."
+                    res.status(403).send(resp)
+                }
+            })
+            .catch((error) => {
+                resp.message = `Error while querying the database: ${error.message}`
+                res.status(500).send(resp)
+            })*/
+    db.user.id(params.name)
         .then(async (id) => {
             if (id !== null) {
                 try {
@@ -68,4 +68,4 @@ module.exports = (req, res) => {
         })
 }
 
-    
+

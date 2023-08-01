@@ -1,8 +1,8 @@
 const sha256 = require('js-sha256')
-const {PrismaClient} = require('./client')
+const { PrismaClient } = require('./client')
 const prisma = new PrismaClient()
 const logger = require("../util/logger")
-const {getId} = require("../modules/token");
+const { getId } = require("../modules/token");
 
 function exist(result) {
     return result !== null;
@@ -66,26 +66,28 @@ async function id(name) {
     }
 }
 
-//根据token组中id查询用户数据
-async function all(token) {
+//原本是根据token组中id查询用户数据，现在暂时改为根据用户名
+async function all(name) {
     const query = await prisma.user.findUnique({
         where: {
-            id: getId(token)
+            name: name
         },
         select: {
-            name: true,
             id: true,
+            rule: true,
+            name: true,
             email: true,
             linked_oauth: true
         }
     })
-    const response = {
-        name: query.name,
+    const result = {
         id: query.id,
+        rule: query.rule,
+        name: query.name,
         email: query.email,
         linkedOauth: query.linked_oauth
     }
-    return response
+    return result
 }
 
 module.exports = {
