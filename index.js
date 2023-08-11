@@ -58,7 +58,7 @@ app.get('/user/blacklist', (req, res) => {
 
 // Error
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  logger.error(err.stack);
   res.status(500);
   res.send('{"status": false, "message": "International Server Error.", data: {}}');
 });
@@ -66,6 +66,7 @@ app.use((err, req, res, next) => {
 // Create HTTP Server and initialize database
 const startServer = async () => {
   try {
+    logger.info('Initializing database...');
     await db.init();
     logger.info(`Initialization successful.(${Math.round(performance.now())}ms)`);
     console.log(``);
@@ -87,7 +88,6 @@ const startServer = async () => {
 };
 
 app.listen(config.DAEMON_PORT, config.HOST, () => {
-  logger.info('Initializing database...');
   startServer();
 });
 
