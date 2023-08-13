@@ -9,7 +9,7 @@
   pnpm install
   ```
 
-3. 根据.env.template编辑配置文件（应当位于仓库目录下`.env`才能正确读取）
+3. 编辑 `config.js` 配置文件
 
 4. 运行
   ```
