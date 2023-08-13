@@ -5,6 +5,7 @@ database/client/
 # Lockfile
 yarn.lock
 pnpm-lock.yaml
+package-lock.json
 
 # Ingore .env
 .env
