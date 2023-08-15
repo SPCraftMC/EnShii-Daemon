@@ -4,10 +4,10 @@
   "description": "╭映水╯守护进程",
   "main": "index.js",
   "prisma": {
-    "seed": "node database/seed.js"
+    "seed": "node modules/database/seed.js"
   },
   "scripts": {
-    "enshii": "node config.js && npx prisma generate && node index.js"
+    "enshii": "node config.js && npx prisma generate && pnpm prisma generate && node index.js"
   },
   "repository": {
     "type": "git",
