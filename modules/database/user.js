@@ -2,7 +2,7 @@ const sha256 = require('js-sha256')
 const { PrismaClient } = require('./client')
 const prisma = new PrismaClient()
 const logger = require("../../util/logger")
-const { getId } = require("./token");
+const { getId } = require("../token");
 
 function exist(result) {
     return result !== null;
