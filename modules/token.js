@@ -1,4 +1,5 @@
 const logger = require("../util/logger")
+const { config } =require('../config.js')
 
 const token = []
 async function createToken(id) {
