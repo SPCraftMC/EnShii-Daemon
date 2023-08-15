@@ -13,3 +13,7 @@ const config = {
   },
   tokenDelay: 3 // hours
 }
+
+export {
+  config
+}
