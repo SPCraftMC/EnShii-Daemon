@@ -1,20 +1,40 @@
 const logger = require("../util/logger")
 const { config } =require('../config.js')
 
-const token = []
+const delay = config.tokenDelay * 3600000
+
+const localToken = []
 async function createToken(id) {
   let guid = ''
-  for (let i = 1; i <= 32; i++) {
-    const n = Math.floor(Math.random() * 16.0).toString(16)
+  for (let i = 32; i--; ) {
+    const n = Math.floor(Math.random() << 4).toString(16)
     guid += n
   }
-  token.push({
-    "id": id,
+  localToken[id] = {
     "token": guid,
-    "expried": Date.now() + 86400000
-  })
-  console.log(guid)
+    "expried": Date.now() + delay
+  }
+  //logger.info('A local token created')
   return guid
+}
+
+watchDog(){
+  for(let it = localToken.length; it--; ){
+    let tmp = localToken[it]
+    if(Date.now() >= tmp.expried){
+      localToken.delete(it)
+      logger.info('<#${it}>Token is out of date. Delete')
+    }
+  }
+}
+
+async function verify(id, token){
+  let tokenToVerify = localToken[id].token
+  if(token === tokenToVerify){
+    return true
+  } else {
+    return false
+  }
 }
 
 /*async function verify(token) {
@@ -39,11 +59,12 @@ async function createToken(id) {
 
 }*/
 
-async function verify(token) {
+/*async function verify(token) {
   return true
-}
+}*/
 
 module.exports = {
   createToken: createToken,
-  verify: verify
+  verify: verify,
+  watchDog: watchDog
 }
