@@ -4,14 +4,12 @@ const config = {
   port: 15450,
   database: {
     // method: {...}
-    mysql: {
-      host: "127.0.0.1",
-      port: 3306,
-      user: "enshii",
-      password: "enshii",
-      database: "enshii"
-    }
-  }
-  "tokenDelay": 3 // hours
+    host: "127.0.0.1",
+    port: 3306,
+    user: "enshii",
+    password: "enshii",
+    database: "enshii"
+  },
+  tokenDelay: 3 // hours
   }
 }
