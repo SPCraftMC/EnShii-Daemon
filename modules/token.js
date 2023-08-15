@@ -18,7 +18,7 @@ async function createToken(id) {
   return guid
 }
 
-watchDog(){
+function watchDog(){
   for(let it = localToken.length; it--; ){
     let tmp = localToken[it]
     if(Date.now() >= tmp.expried){
