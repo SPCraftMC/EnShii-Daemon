@@ -1,6 +1,6 @@
 const { PrismaClient } = require('./client');
 const prisma = new PrismaClient();
-const logger = require ('../util/logger')
+const logger = require ('../../util/logger')
 
 //查询ban掉用户
 async function users() {
