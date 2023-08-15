@@ -1,4 +1,4 @@
-const logger = require ('../util/logger')
+const logger = require ('../../util/logger')
 const { exec } = require('child_process');
 
 /*执行shell命令，根据'../prisma/schema.prisma'初始化数据库结构并执行'./seed.js'配置root用户*/
