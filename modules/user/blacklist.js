@@ -1,5 +1,5 @@
-const { verify } = require("../token");
-const { blacklist } = require("../../database/db");
+const { verify } = require("../../token");
+const { blacklist } = require("../database/db");
 
 module.exports = (req, res) => {
   const resp = {
