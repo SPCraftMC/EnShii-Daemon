@@ -1,7 +1,7 @@
 const { PrismaClient } = require('./client')
 const dotenv = require("dotenv")
 const prisma = new PrismaClient()
-const logger = require("../util/logger")
+const logger = require("../../util/logger")
 
 dotenv.config()
 
