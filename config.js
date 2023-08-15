@@ -12,5 +12,4 @@ const config = {
     database: "enshii"
   },
   tokenDelay: 3 // hours
-  }
 }
