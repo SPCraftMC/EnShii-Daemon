@@ -2,7 +2,7 @@
 const config = {
   host: "127.0.0.1",
   port: 15450,
-  database: {
+  source: {
     // method: {...}
     provider: "mysql",
     host: "127.0.0.1",
