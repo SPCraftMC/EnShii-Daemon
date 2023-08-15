@@ -10,7 +10,8 @@ const config = {
       user: "enshii",
       password: "enshii",
       database: "enshii"
-    },
+    }
+  },
   tokenDelay: 3 // hours
   }
 }
