@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../database/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int    @id @default(autoincrement()) @unique(map: "id")
+  rule         Int    @default(1)
+  name         String @db.VarChar(255) @unique(map: "name")
+  password     String @db.VarChar(255)
+  email        String @db.VarChar(255)
+  linked_oauth Int    @default(-1)
+  ban_info     String @db.VarChar(255) @default("null")
+}
+
+model Oauth {
+  id           Int    @id @unique(map: "id")
+  oauth_id     Int    @default(-1)
+  token        String @db.VarChar(255)
+}
+
+//1 - user
+//2 - admin
+//3 - root
+//-1 - banned
