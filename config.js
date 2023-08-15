@@ -11,6 +11,6 @@ const config = {
       password: "enshii",
       database: "enshii"
     },
-  token-delay: "3" // hours
+  tokenDelay: 3 // hours
   }
 }
