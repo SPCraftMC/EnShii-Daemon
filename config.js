@@ -14,4 +14,6 @@ const config = {
   tokenDelay: 3 // hours
 }
 
-
+module.exports = {
+  config
+}
