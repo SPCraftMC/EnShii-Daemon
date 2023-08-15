@@ -1,5 +1,5 @@
 const logger = require("../util/logger")
-const { config } =require('../config.js')
+const { config } = require('../config.js')
 
 const delay = config.tokenDelay * 3600000
 
