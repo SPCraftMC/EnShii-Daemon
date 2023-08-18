@@ -77,7 +77,7 @@ const startServer = async () => {
     console.log(`\x1B[2m│\x1B[0m ▓▓           ▓▓    ▓▓           ▓▓  ▓▓    ▓▓  ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
     console.log(`\x1B[2m│\x1B[0m ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
     console.log(`\x1B[2m│──────────────────────────────────────────────────────│\x1B[0m`);
-    console.log(`\x1B[2m│\x1B[0m EnShii-Daemon \x1B[2m|\x1B[0m Powered by SPCraftMC & maincore_tech.\x1B[2m│\x1B[0m`);
+    console.log(`\x1B[2m│\x1B[0m EnShii-Daemon   \x1B[2m|\x1B[0m   Powered by SPCraftMC & crux_tech.\x1B[2m│\x1B[0m`);
     console.log(`\x1B[2m│\x1B[0m                     Made with \x1B[31m❤\x1B[0m.                     \x1B[2m│\x1B[0m`)
     console.log(`\x1B[2m╰──────────────────────────────────────────────────────╯\x1B[0m`)
     console.log(``);
