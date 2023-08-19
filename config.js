@@ -1,4 +1,4 @@
-//前部json内容；后部部分值写入环境变量供prisma生成客户端
+// 只包含json数据
 const config = {
   host: "127.0.0.1",
   port: 15450,
