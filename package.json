@@ -7,7 +7,7 @@
     "seed": "node modules/database/seed.js"
   },
   "scripts": {
-    "enshii": "node config.js && npx prisma generate && node index.js"
+    "enshii": "node init.js"
   },
   "repository": {
     "type": "git",

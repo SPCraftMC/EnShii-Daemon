@@ -1,7 +1,6 @@
 const express = require('express')
 const logger = require('./util/logger')
 const dotenv = require("dotenv")
-const db = require('./modules/database/db')
 const header = require('./modules/header')
 
 dotenv.config()
@@ -64,10 +63,8 @@ app.use((err, req, res, next) => {
 });
 
 // Create HTTP Server and initialize database
-const startServer = async () => {
+const server = async () => {
   try {
-    logger.info('Initializing database...');
-    await db.init();
     logger.info(`Initialization successful.(${Math.round(performance.now())}ms)`);
     console.log(``);
     console.log(`\x1B[2m╭──────────────────────────────────────────────────────╮\x1B[0m`);
@@ -88,7 +85,7 @@ const startServer = async () => {
 };
 
 app.listen(config.DAEMON_PORT, config.HOST, () => {
-  startServer();
+  server();
 });
 
 /**
