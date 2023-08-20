@@ -1,7 +1,7 @@
 // 把dbinit以及其他启动与预启动操作集成，最后通过shell启动index以防止依赖爆炸
 const logger = require('./util/logger')
 const { exec } = require('child_process');
-const { config } = require('./modules/config.js')
+const { config } = require('./config.js')
 
 // 执行shell命令，根据'../prisma/schema.prisma'初始化数据库结构并执行'./seed.js'配置root用户
 const init = async () => {
