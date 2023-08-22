@@ -2,10 +2,11 @@ const express = require('express')
 const logger = require('./util/logger')
 const dotenv = require("dotenv")
 const header = require('./modules/header')
+const { config } = require('./config.js')
 
-dotenv.config()
+/*dotenv.config()
 
-const config = process.env
+const config = process.env*/
 const app = express();
 
 app.use(express.json());
@@ -74,17 +75,17 @@ const server = async () => {
     console.log(`\x1B[2m│\x1B[0m ▓▓           ▓▓    ▓▓           ▓▓  ▓▓    ▓▓  ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
     console.log(`\x1B[2m│\x1B[0m ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
     console.log(`\x1B[2m│──────────────────────────────────────────────────────│\x1B[0m`);
-    console.log(`\x1B[2m│\x1B[0m EnShii-Daemon   \x1B[2m|\x1B[0m   Powered by SPCraftMC & crux_tech.\x1B[2m│\x1B[0m`);
-    console.log(`\x1B[2m│\x1B[0m                     Made with \x1B[31m❤\x1B[0m.                     \x1B[2m│\x1B[0m`)
+    console.log(`\x1B[2m│\x1B[0m EnShii-Daemon  \x1B[2m|\x1B[0m  Powered by SPCraftMC & crux_tech.  \x1B[2m│\x1B[0m`);
+    console.log(`\x1B[2m│\x1B[0m                     Made with \x1B[31m❤\x1B[0m .                    \x1B[2m│\x1B[0m`)
     console.log(`\x1B[2m╰──────────────────────────────────────────────────────╯\x1B[0m`)
     console.log(``);
-    logger.info(`Server running at http://${config.HOST}:${config.DAEMON_PORT}. \x1B[32mReady for connections!\x1B[0m`);
+    logger.info(`Server is running at http://${config.host}:${config.port}. \x1B[32mReady for connections!\x1B[0m`);
   } catch (error) {
     console.error("Initialization failed: " + error.message);
   }
 };
 
-app.listen(config.DAEMON_PORT, config.HOST, () => {
+app.listen(config.port, config.host, () => {
   server();
 });
 

@@ -11,7 +11,7 @@ const config = {
     password: "enshii",
     database: "enshii"
   },
-  tokenDelay: 3 // hours
+  tokenDelay: 3, // hours
 }
 
 module.exports = {

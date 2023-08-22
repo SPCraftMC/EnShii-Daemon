@@ -11,9 +11,15 @@
 
 3. 编辑 `config.js` 配置文件
 
-4. 运行
+4. 
+- 正常开启服务器
   ```
   pnpm enshii
+  ```
+
+- 临时开启服务器（不初始化数据源，通常用于在已经初始化过后的测试）
+  ```
+  pnpm tmp
   ```
 
 ## Open Source LICENSE
