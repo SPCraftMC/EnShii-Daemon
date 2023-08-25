@@ -6,7 +6,7 @@ const delay = config.tokenDelay * 3600000
 const localToken = []
 async function createToken(id) {
   let guid = ''
-  for (let i = 32; i--; ) {
+  for (let i = 32; i--;) {
     const n = Math.floor(Math.random() << 4).toString(16)
     guid += n
   }
@@ -18,19 +18,13 @@ async function createToken(id) {
   return guid
 }
 
-function watchDog(){
-  for(let it = localToken.length; it--; ){
-    let tmp = localToken[it]
-    if(Date.now() >= tmp.expried){
-      localToken.delete(it)
-      logger.info('<#${it}>Token is out of date. Delete')
-    }
-  }
-}
-
-async function verify(id, token){
-  let tokenToVerify = localToken[id].token
-  if(token === tokenToVerify){
+async function verify(id, token) {
+  let tmp = localToken[id]
+  if (Date.now() >= tmp.expried) {
+    localToken.delete(id)
+    //logger.info('<#${id}>Token is out of date.Deleted.')
+    return false
+  } else if (token === tmp.token) {
     return true
   } else {
     return false
@@ -65,6 +59,5 @@ async function verify(id, token){
 
 module.exports = {
   createToken: createToken,
-  verify: verify,
-  watchDog: watchDog
+  verify: verify
 }
