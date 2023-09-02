@@ -6,7 +6,7 @@
 
 2. 安装 `Node.JS 18` 以及 `pnpm(推荐)` 并在仓库目录（存在`package.json`的）下运行：
   ```
-  pnpm install
+  pnpm i
   ```
 
 3. 编辑 `config.js` 配置文件
