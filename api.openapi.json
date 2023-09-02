@@ -20,6 +20,9 @@
     },
     {
       "name": "user"
+    },
+    {
+      "name": "user/oauth2.0"
     }
   ],
   "paths": {
@@ -27,8 +30,8 @@
       "get": {
         "summary": "状态",
         "x-apifox-folder": "",
-        "x-apifox-status": "developing",
-        "deprecated": false,
+        "x-apifox-status": "deprecated",
+        "deprecated": true,
         "description": "后端状态简报",
         "tags": [],
         "parameters": [],
@@ -54,7 +57,7 @@
       "get": {
         "summary": "信息",
         "x-apifox-folder": "server",
-        "x-apifox-status": "developing",
+        "x-apifox-status": "released",
         "deprecated": false,
         "description": "服务器基础信息",
         "tags": [
@@ -112,7 +115,7 @@
       "post": {
         "summary": "登录",
         "x-apifox-folder": "auth",
-        "x-apifox-status": "developing",
+        "x-apifox-status": "released",
         "deprecated": false,
         "description": "登录并获得Token",
         "tags": [
@@ -167,7 +170,7 @@
       "post": {
         "summary": "注册",
         "x-apifox-folder": "auth",
-        "x-apifox-status": "developing",
+        "x-apifox-status": "released",
         "deprecated": false,
         "description": "注册并获得Token",
         "tags": [
@@ -228,40 +231,11 @@
         "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-99821374-run"
       }
     },
-    "/auth/fastlogin": {
-      "post": {
-        "summary": "快速登录",
-        "x-apifox-folder": "auth",
-        "x-apifox-status": "developing",
-        "deprecated": false,
-        "description": "",
-        "tags": [
-          "auth"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "成功",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {},
-                  "x-apifox-ignore-properties": [],
-                  "x-apifox-orders": []
-                }
-              }
-            }
-          }
-        },
-        "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-99821828-run"
-      }
-    },
     "/auth/check": {
       "post": {
         "summary": "token验证",
         "x-apifox-folder": "auth",
-        "x-apifox-status": "developing",
+        "x-apifox-status": "testing",
         "deprecated": false,
         "description": "不知道啥接口",
         "tags": [
@@ -340,7 +314,7 @@
       "get": {
         "summary": "黑名单",
         "x-apifox-folder": "user",
-        "x-apifox-status": "developing",
+        "x-apifox-status": "testing",
         "deprecated": false,
         "description": "用户黑名单信息",
         "tags": [
@@ -501,6 +475,338 @@
           }
         },
         "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-100100764-run"
+      }
+    },
+    "/user/oauth2.0/bind": {
+      "get": {
+        "summary": "绑定",
+        "x-apifox-folder": "user/oauth2.0",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "请求绑定 BS Oauth2.0",
+        "tags": [
+          "user/oauth2.0"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "description": "Token",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-100127692-run"
+      }
+    },
+    "/user/oauth2.0/callback": {
+      "get": {
+        "summary": "绑定回调",
+        "x-apifox-folder": "user/oauth2.0",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "user/oauth2.0"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-100127703-run"
+      }
+    },
+    "/user/status": {
+      "get": {
+        "summary": "status",
+        "x-apifox-folder": "user",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "返回一个类似uptime的结构用于显示在dashboard",
+        "tags": [
+          "user"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                },
+                "x-apifox-orders": [
+                  "token"
+                ],
+                "required": [
+                  "token"
+                ],
+                "x-apifox-ignore-properties": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-107688020-run"
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "summary": "个人信息",
+        "x-apifox-folder": "user",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "user"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                },
+                "x-apifox-orders": [
+                  "token"
+                ],
+                "required": [
+                  "token"
+                ],
+                "x-apifox-ignore-properties": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-107688127-run"
+      },
+      "post": {
+        "summary": "个人信息",
+        "x-apifox-folder": "user",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "user"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "string"
+                  }
+                },
+                "x-apifox-orders": [
+                  "token",
+                  "data"
+                ],
+                "required": [
+                  "token",
+                  "data"
+                ],
+                "x-apifox-ignore-properties": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-107689144-run"
+      }
+    },
+    "/user/password": {
+      "post": {
+        "summary": "密码",
+        "x-apifox-folder": "user",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "重设密码，新密码建议加密后传送",
+        "tags": [
+          "user"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "new": {
+                    "type": "string"
+                  }
+                },
+                "x-apifox-orders": [
+                  "token",
+                  "password",
+                  "new"
+                ],
+                "required": [
+                  "token",
+                  "password",
+                  "new"
+                ],
+                "x-apifox-ignore-properties": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-107689204-run"
+      }
+    },
+    "/user/data": {
+      "get": {
+        "summary": "统计数据",
+        "x-apifox-folder": "user",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "获得用于绘制图表的用户数据",
+        "tags": [
+          "user"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                },
+                "x-apifox-orders": [
+                  "token"
+                ],
+                "required": [
+                  "token"
+                ],
+                "x-apifox-ignore-properties": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-107689949-run"
       }
     }
   },
