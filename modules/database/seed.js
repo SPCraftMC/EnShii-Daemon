@@ -1,19 +1,17 @@
 const { PrismaClient } = require('./client')
-const dotenv = require("dotenv")
 const prisma = new PrismaClient()
 const logger = require("../../util/logger")
-
-dotenv.config()
+const { config } = require('../../config.js')
 
 //更新root用户
 async function main() {
   await prisma.user.upsert({
-    where: { name: process.env.ROOT_NAME },
+    where: { name: config.root.name },
     update: {},
     create: {
-      name: process.env.ROOT_NAME,
-      password: process.env.ROOT_PASSWORD,
-      email: process.env.ROOT_EMAIL,
+      name: config.root.name,
+      password: config.root.password,
+      email: config.root.email,
       rule: 3
     },
   })

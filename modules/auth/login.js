@@ -1,4 +1,5 @@
 const db = require('../database/db')
+const { token } = require('../token')
 
 module.exports = (req, res) => {
   const resp = {
@@ -47,7 +48,7 @@ module.exports = (req, res) => {
           if (status) {
             resp.status = true;
             resp.message = "";
-            resp.data.token = await db.token.createToken(id);
+            resp.data.token = await token.createToken(id);
             res.status(200).send(resp);
           } else {
             resp.message = "Invalid password.";

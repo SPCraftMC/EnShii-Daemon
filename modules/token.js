@@ -41,7 +41,7 @@ async function verify(id, token) {
     else if (token === it.token) return true
   }
   return false
-  
+
     token.forEach((it) => {
         const i0 = it === it.id
         const i1 = token === it.token

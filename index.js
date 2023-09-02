@@ -1,12 +1,8 @@
 const express = require('express')
 const logger = require('./util/logger')
-const dotenv = require("dotenv")
 const header = require('./modules/header')
 const { config } = require('./config.js')
 
-/*dotenv.config()
-
-const config = process.env*/
 const app = express();
 
 app.use(express.json());
@@ -16,11 +12,6 @@ app.use((req, _res, next) => {
   logger.info(`>>> ${req.method} | ${req.path} | IP: ${req.ip}`);
   header(_res)
   next()
-});
-
-// Default response
-app.get('/', (req, res) => {
-  res.send('{"message": "Status => OK | EnShii-Daemon Loaded."}');
 });
 
 // Server modules
@@ -63,22 +54,9 @@ app.use((err, req, res, next) => {
   res.send('{"status": false, "message": "International Server Error.", data: {}}');
 });
 
-// Create HTTP Server and initialize database
+// Create HTTP Server
 const server = async () => {
   try {
-    logger.info(`Initialization successful.(${Math.round(performance.now())}ms)`);
-    console.log(``);
-    console.log(`\x1B[2m╭──────────────────────────────────────────────────────╮\x1B[0m`);
-    console.log(`\x1B[2m│\x1B[0m ▓▓▓▓▓▓▓▓▓▓▓            ▓▓▓▓▓▓▓▓▓▓▓  ▓▓        〓  〓 \x1B[2m│\x1B[0m`);
-    console.log(`\x1B[2m│\x1B[0m ▓▓                     ▓▓           ▓▓        ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
-    console.log(`\x1B[2m│\x1B[0m ▓▓▓▓▓▓▓▓▓▓▓  ▓▓✚▓▓▓✚   ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓✚   ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
-    console.log(`\x1B[2m│\x1B[0m ▓▓           ▓▓    ▓▓           ▓▓  ▓▓    ▓▓  ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
-    console.log(`\x1B[2m│\x1B[0m ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
-    console.log(`\x1B[2m│──────────────────────────────────────────────────────│\x1B[0m`);
-    console.log(`\x1B[2m│\x1B[0m EnShii-Daemon  \x1B[2m|\x1B[0m  Powered by SPCraftMC & crux_tech.  \x1B[2m│\x1B[0m`);
-    console.log(`\x1B[2m│\x1B[0m                     Made with \x1B[31m❤\x1B[0m .                    \x1B[2m│\x1B[0m`)
-    console.log(`\x1B[2m╰──────────────────────────────────────────────────────╯\x1B[0m`)
-    console.log(``);
     logger.info(`Server is running at http://${config.host}:${config.port}. \x1B[32mReady for connections!\x1B[0m`);
   } catch (error) {
     console.error("Initialization failed: " + error.message);

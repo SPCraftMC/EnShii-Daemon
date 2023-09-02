@@ -1,11 +1,10 @@
 node_modules/
 ._*
 modules/database/client/
+log/
 
 # Lockfile
 yarn.lock
 pnpm-lock.yaml
 package-lock.json
 
-# Ingore .env
-.env

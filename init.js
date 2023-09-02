@@ -29,13 +29,35 @@ const init = async () => {
           process.exit();
         }
         logger.info("Root user fit the requirements.");
-        exec('node index.js', (error) => {
+        const command = "pm2 start ./index.js --watch --deep-monitoring --merge-logs -i " + config.run.thread + " --kill-timeout " + config.run.timeout + " --name " + config.run.name
+        exec(command, (error) => {
           if (error) {
             logger.error(`${error}`);
             logger.error("Error while start server thread!");
             logger.error("EnShii-Daemon will exit now.");
             process.exit();
           }
+          logger.info(`Initialization successful.(${Math.round(performance.now())}ms)`);
+          console.log(``);
+          console.log(`\x1B[2m╭──────────────────────────────────────────────────────╮\x1B[0m`);
+          console.log(`\x1B[2m│\x1B[0m ▓▓▓▓▓▓▓▓▓▓▓            ▓▓▓▓▓▓▓▓▓▓▓  ▓▓        〓  〓 \x1B[2m│\x1B[0m`);
+          console.log(`\x1B[2m│\x1B[0m ▓▓                     ▓▓           ▓▓        ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
+          console.log(`\x1B[2m│\x1B[0m ▓▓▓▓▓▓▓▓▓▓▓  ▓▓✚▓▓▓✚   ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓✚   ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
+          console.log(`\x1B[2m│\x1B[0m ▓▓           ▓▓    ▓▓           ▓▓  ▓▓    ▓▓  ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
+          console.log(`\x1B[2m│\x1B[0m ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓    ▓▓  ▓▓  ▓▓ \x1B[2m│\x1B[0m`);
+          console.log(`\x1B[2m│──────────────────────────────────────────────────────│\x1B[0m`);
+          console.log(`\x1B[2m│\x1B[0m EnShii-Daemon  \x1B[2m|\x1B[0m  Powered by SPCraftMC & crux_tech.  \x1B[2m│\x1B[0m`);
+          console.log(`\x1B[2m│\x1B[0m                     Made with \x1B[31m❤\x1B[0m .                    \x1B[2m│\x1B[0m`)
+          console.log(`\x1B[2m╰──────────────────────────────────────────────────────╯\x1B[0m`)
+          console.log(``);
+          logger.info("Server thread started. These are some commands\n")
+          console.log("'pm2 ls'    list all pm2 instance")
+          console.log(`'pm2 logs ${config.run.name}'    watch logs`)
+          console.log("'pm2 flush'    flush logs")
+          console.log(`'pm2 reload ${config.run.name}'    reload the server`)
+          console.log(`'pm2 stop ${config.run.name}'    stop the server`)
+          console.log(`'pm2 kill'    kill all\n`)
+          console.log("other commands see https://pm2.keymetrics.io/docs")
           resolve()
         });
       });
