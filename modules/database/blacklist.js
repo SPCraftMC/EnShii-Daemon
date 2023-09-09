@@ -1,9 +1,9 @@
 const { PrismaClient } = require('./client');
 const prisma = new PrismaClient();
-const logger = require ('../../util/logger')
+const logger = require('../../util/logger')
 
-//查询ban掉用户
-async function users() {
+//查询黑名单用户和信息
+async function list() {
   try {
     const blackList = await prisma.user.findMany({
       where: {
@@ -13,43 +13,14 @@ async function users() {
         name: true,
         ban_info: true
       }
-    });
-
+    })
     return blackList
   } catch (error) {
     logger.error('Error retrieving black list:', error);
     throw error;
-  } finally {
-    await prisma.$disconnect();
-  }
-}
-
-//查询特定用户ban_info
-async function baninfo(name) {
-  try {
-    const user = await prisma.user.findUnique({
-      where: {
-        name: name
-      },
-      select: {
-        ban_info: true
-      }
-    });
-
-    if (user) {
-      return user.ban_info;
-    } else {
-      return null;
-    }
-  } catch (error) {
-    logger.error('Error retrieving ban info:', error);
-    throw error;
-  } finally {
-    await prisma.$disconnect();
   }
 }
 
 module.exports = {
-  users: users,
-  baninfo: baninfo
-};
+  list: list
+}

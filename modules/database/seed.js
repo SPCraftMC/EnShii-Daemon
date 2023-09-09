@@ -16,13 +16,12 @@ async function main() {
     },
   })
 }
+
 main()
   .then(async () => {
-    await prisma.$disconnect()
   })
   .catch(async (e) => {
     logger.error(e)
-    await prisma.$disconnect()
     process.exit(1)
   })
 

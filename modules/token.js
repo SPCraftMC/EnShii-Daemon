@@ -7,7 +7,7 @@ const localToken = []
 async function createToken(id) {
   let guid = ''
   for (let i = 32; i--;) {
-    const n = Math.floor(Math.random() << 4).toString(16)
+    const n = Math.floor(Math.random() * 16).toString(16)
     guid += n
   }
   localToken[id] = {
@@ -19,39 +19,18 @@ async function createToken(id) {
 }
 
 async function verify(id, token) {
-  let tmp = localToken[id]
-  if (Date.now() >= tmp.expried) {
+  let tmp = localToken.at(id)
+  logger.info(tmp)
+  /*if (Date.now() >= tmp.expried) {
     localToken.delete(id)
-    //logger.info('<#${id}>Token is out of date.Deleted.')
+    logger.info(`<#${id}>Token is out of date.Deleted.`)
     return false
   } else if (token === tmp.token) {
     return true
   } else {
     return false
-  }
+  }*/
 }
-
-/*async function verify(token) {
-  for (let it in token) {
-    logger.info(`${it.token}, ${token}`)
-    if (Date.now() >= it.expried) {
-      token.delete(it)
-      return false
-    }
-    else if (token === it.token) return true
-  }
-  return false
-
-    token.forEach((it) => {
-        const i0 = it === it.id
-        const i1 = token === it.token
-        if (Date.now() >= it.expried) return false
-        else if (i0 && i1) return true
-    })
-    return false
-
-
-}*/
 
 /*async function verify(token) {
   return true
