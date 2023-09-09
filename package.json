@@ -7,8 +7,7 @@
     "seed": "node modules/database/seed.js"
   },
   "scripts": {
-    "enshii": "node init.js",
-    "tmp": "node index.js"
+    "enshii": "node util/init.js"
   },
   "repository": {
     "type": "git",

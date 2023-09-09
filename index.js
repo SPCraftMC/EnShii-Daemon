@@ -57,13 +57,13 @@ app.use((err, req, res, next) => {
 // Create HTTP Server
 const server = async () => {
   try {
-    logger.info(`Server is running at http://${config.host}:${config.port}. \x1B[32mReady for connections!\x1B[0m`);
+    logger.info(`Server is running at http://${config.daemon.host}:${config.daemon.port}. \x1B[32mReady for connections!\x1B[0m`);
   } catch (error) {
     console.error("Initialization failed: " + error.message);
   }
 };
 
-app.listen(config.port, config.host, () => {
+app.listen(config.daemon.port, config.daemon.host, () => {
   server();
 });
 

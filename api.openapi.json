@@ -264,7 +264,7 @@
       "get": {
         "summary": "信息",
         "x-apifox-folder": "user",
-        "x-apifox-status": "developing",
+        "x-apifox-status": "released",
         "deprecated": false,
         "description": "用户信息\n问题请求，暂时在后端将/database/user.js中的函数all改写为接收用户名，修复需要写token结构代码（历史遗留问题），请求格式不变",
         "tags": [
@@ -277,15 +277,20 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
                   "token": {
                     "type": "string"
                   }
                 },
                 "x-apifox-orders": [
+                  "id",
                   "token"
                 ],
                 "required": [
-                  "token"
+                  "token",
+                  "id"
                 ],
                 "x-apifox-ignore-properties": []
               }
@@ -314,7 +319,7 @@
       "get": {
         "summary": "黑名单",
         "x-apifox-folder": "user",
-        "x-apifox-status": "testing",
+        "x-apifox-status": "released",
         "deprecated": false,
         "description": "用户黑名单信息",
         "tags": [
@@ -327,15 +332,20 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
                   "token": {
                     "type": "string"
                   }
                 },
                 "x-apifox-orders": [
+                  "id",
                   "token"
                 ],
                 "required": [
-                  "token"
+                  "token",
+                  "id"
                 ],
                 "x-apifox-ignore-properties": []
               }
@@ -563,15 +573,20 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
                   "token": {
                     "type": "string"
                   }
                 },
                 "x-apifox-orders": [
+                  "id",
                   "token"
                 ],
                 "required": [
-                  "token"
+                  "token",
+                  "id"
                 ],
                 "x-apifox-ignore-properties": []
               }
@@ -613,15 +628,20 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
                   "token": {
                     "type": "string"
                   }
                 },
                 "x-apifox-orders": [
+                  "id",
                   "token"
                 ],
                 "required": [
-                  "token"
+                  "token",
+                  "id"
                 ],
                 "x-apifox-ignore-properties": []
               }
@@ -661,6 +681,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
                   "token": {
                     "type": "string"
                   },
@@ -669,12 +692,14 @@
                   }
                 },
                 "x-apifox-orders": [
+                  "id",
                   "token",
                   "data"
                 ],
                 "required": [
                   "token",
-                  "data"
+                  "data",
+                  "id"
                 ],
                 "x-apifox-ignore-properties": []
               }
@@ -716,6 +741,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
                   "token": {
                     "type": "string"
                   },
@@ -727,6 +755,7 @@
                   }
                 },
                 "x-apifox-orders": [
+                  "id",
                   "token",
                   "password",
                   "new"
@@ -734,7 +763,8 @@
                 "required": [
                   "token",
                   "password",
-                  "new"
+                  "new",
+                  "id"
                 ],
                 "x-apifox-ignore-properties": []
               }
@@ -757,56 +787,6 @@
           }
         },
         "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-107689204-run"
-      }
-    },
-    "/user/data": {
-      "get": {
-        "summary": "统计数据",
-        "x-apifox-folder": "user",
-        "x-apifox-status": "developing",
-        "deprecated": false,
-        "description": "获得用于绘制图表的用户数据",
-        "tags": [
-          "user"
-        ],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "token": {
-                    "type": "string"
-                  }
-                },
-                "x-apifox-orders": [
-                  "token"
-                ],
-                "required": [
-                  "token"
-                ],
-                "x-apifox-ignore-properties": []
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "成功",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {},
-                  "x-apifox-ignore-properties": [],
-                  "x-apifox-orders": []
-                }
-              }
-            }
-          }
-        },
-        "x-run-in-apifox": "https://apifox.com/web/project/3058450/apis/api-107689949-run"
       }
     }
   },
