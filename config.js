@@ -31,13 +31,18 @@ const config = {
   ],
 
   source: {
-    // method: {...}
-    provider: "mysql",
-    host: "127.0.0.1",
-    port: 3306,
-    user: "root",
-    password: "enshii",
-    database: "enshii"
+    provider: 'mysql',
+    sql: {
+      host: "127.0.0.1",
+      port: 3306,
+      user: "root",
+      password: "enshii",
+      database: "enshii"
+    },
+    redis: {
+      host: "",
+      port: 6379
+    }
   },
 
   root: {

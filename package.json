@@ -21,11 +21,12 @@
   "homepage": "https://github.com/SPCraftMC/EnShii-Daemon#readme",
   "dependencies": {
     "@prisma/client": "latest",
+    "cli-table3": "^0.6.3",
     "esm": "^3.2.25",
     "express": "^4.18.2",
     "js-sha256": "latest",
     "pm2": "latest",
-    "pnpm": "latest",
+    "pnpm": "^8.7.6",
     "prisma": "latest",
     "semver": "latest"
   }
