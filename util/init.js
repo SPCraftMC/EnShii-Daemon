@@ -23,9 +23,9 @@ const init = async () => {
     handleError('Error while preparing root user!', error);
   }
 
-  const command = `pm2 start ./index.js --watch --deep-monitoring --merge-logs -i ${config.daemon.instance} --kill-timeout ${config.daemon.timeout} --name ${config.daemon.name}`;
+  const pm2command = `pm2 start ./index.js --watch --deep-monitoring --merge-logs -i ${config.daemon.instance} --kill-timeout ${config.daemon.timeout} --name ${config.daemon.name}`;
   try {
-    await execAsync(command);
+    await execAsync(pm2command);
     logger.info(`Initialization successful.(${Math.round(performance.now())}ms)`);
     displayBanner();
     displayCommands();
