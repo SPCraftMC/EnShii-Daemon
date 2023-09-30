@@ -3,9 +3,7 @@ const config = {
   daemon: {
     host: "127.0.0.1",
     port: 15450,
-    name: "enshii", // pm2 instance name here, u can use this in pm2 commands
-    instance: 1, // "max" or 0 to use max thread. you can also use numbers(1, 2, 4...)\
-    // 注意，还没写token验证的适配，请使用1
+    name: "enshii", // pm2 instance name here, use this in pm2 commands
     timeout: 3000 // the force kill timeout(ms)
   },
 
@@ -38,17 +36,14 @@ const config = {
       user: "root",
       password: "enshii",
       database: "enshii"
-    },
-    redis: {
-      host: "",
-      port: 6379
     }
   },
-
-  root: {
-    name: "enshii",
-    password: "enshii",
-    email: "enshii@spcraft.ml"
+  users: {
+    root: {
+      name: "enshii",
+      password: "enshii",
+      email: "enshii@spcraft.ml"
+    }
   },
 
   panel: {

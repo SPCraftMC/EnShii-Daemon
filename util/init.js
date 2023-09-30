@@ -18,12 +18,16 @@ const init = async () => {
 
   try {
     await execAsync('npx prisma db seed');
-    logger.info('Root user fit the requirements.');
+    logger.info('Target user fit the requirements.');
   } catch (error) {
-    handleError('Error while preparing root user!', error);
+    handleError('Error while preparing target user!', error);
   }
 
+<<<<<<< HEAD
   const pm2command = `pm2 start ./index.js --watch --deep-monitoring --merge-logs -i ${config.daemon.instance} --kill-timeout ${config.daemon.timeout} --name ${config.daemon.name}`;
+=======
+  const command = `pm2 start ./index.js --watch --deep-monitoring --merge-logs -i 1 --kill-timeout ${config.daemon.timeout} --name ${config.daemon.name}`;
+>>>>>>> f4de3e4 (none)
   try {
     await execAsync(pm2command);
     logger.info(`Initialization successful.(${Math.round(performance.now())}ms)`);

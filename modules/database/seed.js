@@ -6,12 +6,12 @@ const { config } = require('../../config.js')
 //更新root用户
 async function main() {
   await prisma.user.upsert({
-    where: { name: config.root.name },
+    where: { name: config.users.root.name },
     update: {},
     create: {
-      name: config.root.name,
-      password: config.root.password,
-      email: config.root.email,
+      name: config.users.root.name,
+      password: config.users.root.password,
+      email: config.users.root.email,
       rule: 3
     },
   })
