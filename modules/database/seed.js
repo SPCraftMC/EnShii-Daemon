@@ -18,8 +18,6 @@ async function main() {
 }
 
 main()
-  .then(async () => {
-  })
   .catch(async (e) => {
     logger.error(e)
     process.exit(1)

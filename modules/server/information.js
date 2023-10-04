@@ -1,18 +1,22 @@
 const { config } = require('../../config.js')
 
-//待修改
 module.exports = (req, res) => {
   let resp = {
     status: true,
     message: "",
     data: {
-      server_name: config.DAEMON_NAME,
-      panel_info: {
-        name: config.PANEL_NAME,
-        icon: config.PANEL_FAVICON,
+      server: {
+        name: config.daemon.name,
+        database: {
+          provider: config.source.provider
+        }
+      },
+      panel: {
+        name: config.panel.name,
+        //icon: config.panel.favicon,
         title: {
-          site: config.PANEL_SITE_TITLE,
-          menu: config.PANEL_MENU_TITLE
+          site: config.panel.title.site,
+          menu: config.panel.title.menu
         }
       }
     }

@@ -31,10 +31,6 @@ async function verify(id, token) {
   }
 }
 
-/*async function verify(token) {
-  return true
-}*/
-
 module.exports = {
   createToken: createToken,
   verify: verify

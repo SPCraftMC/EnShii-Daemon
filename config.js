@@ -7,6 +7,15 @@ const config = {
     timeout: 3000 // the force kill timeout(ms)
   },
 
+  panel: {
+    url: "http://localhost:15455",
+    name: "「青镜」玩家管理面板",
+    title: {
+      site: "「青镜」玩家管理面板",
+      menu: "menu"
+    }
+  },
+
   oauth: [
     {
       name: "RedStone Skin - 红石皮肤站",
@@ -44,10 +53,6 @@ const config = {
       password: "enshii",
       email: "enshii@spcraft.ml"
     }
-  },
-
-  panel: {
-    url: "http://localhost:15455"
   },
 
   tokenDelay: 3, // hours
