@@ -23,11 +23,8 @@ const init = async () => {
     handleError('Error while preparing target user!', error);
   }
 
-<<<<<<< HEAD
-  const pm2command = `pm2 start ./index.js --watch --deep-monitoring --merge-logs -i ${config.daemon.instance} --kill-timeout ${config.daemon.timeout} --name ${config.daemon.name}`;
-=======
-  const command = `pm2 start ./index.js --watch --deep-monitoring --merge-logs -i 1 --kill-timeout ${config.daemon.timeout} --name ${config.daemon.name}`;
->>>>>>> f4de3e4 (none)
+  const pm2command = `pm2 start ./index.js --watch --deep-monitoring --merge-logs -i 1 --kill-timeout ${config.daemon.timeout} --name ${config.daemon.name}`;
+
   try {
     await execAsync(pm2command);
     logger.info(`Initialization successful.(${Math.round(performance.now())}ms)`);
