@@ -5,19 +5,20 @@ const { config } = require('../config.js');
 
 const init = async () => {
   logger.info('Set the environment variables.');
-  let databaseUrl = `${config.source.provider}://${config.source.sql.user}:${config.source.sql.password}@${config.source.sql.host}:${config.source.sql.port}/${config.source.sql.database}`;
+  /*let databaseUrl = `${config.source.provider}://${config.source.sql.user}:${config.source.sql.password}@${config.source.sql.host}:${config.source.sql.port}/${config.source.sql.database}`;*/
+  let databaseUrl="file:./dev.db"
   process.env.DATABASE_URL = databaseUrl;
 
   logger.info('Initializing the database.');
   try {
-    await execAsync('npx prisma db push');
+    await execAsync('bun prisma db push');
     logger.info('Database model initialization successful.');
   } catch (error) {
     handleError('Error while initializing the database model!', error);
   }
 
   try {
-    await execAsync('npx prisma db seed');
+    await execAsync('bun prisma db seed');
     logger.info('Target user fit the requirements.');
   } catch (error) {
     handleError('Error while preparing target user!', error);
