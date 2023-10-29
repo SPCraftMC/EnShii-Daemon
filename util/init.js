@@ -5,9 +5,14 @@ const { config } = require('../config.js');
 
 const init = async () => {
   logger.info('Set the environment variables.');
-  /*let databaseUrl = `${config.source.provider}://${config.source.sql.user}:${config.source.sql.password}@${config.source.sql.host}:${config.source.sql.port}/${config.source.sql.database}`;*/
-  let databaseUrl="file:./dev.db"
-  process.env.DATABASE_URL = databaseUrl;
+  switch (config.source.provider) {
+    case "mysql":
+      process.env.DATABASE_URL = `${config.source.provider}://${config.source.sql.user}:${config.source.sql.password}@${config.source.sql.host}:${config.source.sql.port}/${config.source.sql.database}`
+      break;
+    case "sqlite":
+      process.env.DATABASE_URL = `file:./${config.source.sqlite}`
+      break;
+  }
 
   logger.info('Initializing the database.');
   try {

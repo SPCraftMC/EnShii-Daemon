@@ -9,19 +9,19 @@ datasource db {
 }
 
 model User {
-  id           Int    @id @unique(map: "id") @default(autoincrement())
+  id           Int    @id @unique(map: "user_id") @default(autoincrement())
   rule         Int    @default(1)
-  name         String @unique(map: "name") @db.VarChar(255)
-  password     String @db.VarChar(255)
-  email        String @db.VarChar(255)
+  name         String @unique(map: "name") //@db.VarChar(255)
+  password     String //@db.VarChar(255)
+  email        String //@db.VarChar(255)
   linked_oauth Int    @default(-1)
-  ban_info     String @default("null") @db.VarChar(255)
+  ban_info     String @default("null") //@db.VarChar(255)
 }
 
 model Oauth {
-  id       Int    @id @unique(map: "id")
+  id       Int    @id @unique(map: "oauth_id")
   oauth_id Int    @default(-1)
-  token    String @db.VarChar(255)
+  token    String //@db.VarChar(255)
 }
 
 //1 - user

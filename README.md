@@ -17,6 +17,10 @@
   bun enshii
   ```
 
+## 问题
+
+更换数据库类型时除了更改./config.js还需要更改./schema.prisma中的db.provider
+
 ## Open Source LICENSE
 
 [GPL-3.0](LICENSE)
